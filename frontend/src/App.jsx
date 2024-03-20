@@ -1,4 +1,4 @@
-import parseInput from "./functions/parse_connections"
+import parseInput from "./functions/parse_connections.js"
 import { useState } from "react"
 
 const App = () => {

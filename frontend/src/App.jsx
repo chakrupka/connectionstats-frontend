@@ -16,13 +16,27 @@ const App = () => {
     setResults(parseInput(newGame))
   }
 
+  const pasteClipboardContent = () => {
+    navigator.clipboard.readText().then((text) => {
+      setNewGame(text)
+    })
+  }
+
   return (
     <div className='input'>
       <form onSubmit={submitGame} className='gameForm'>
+        <button
+          type='button'
+          className='submitButton'
+          onClick={() => pasteClipboardContent()}
+        >
+          Paste
+        </button>
         <textarea
           value={newGame}
           onChange={handleGameChange}
           className='gameInput'
+          id='paste-target'
         />
         <button type='submit' className='submitButton'>
           Check score

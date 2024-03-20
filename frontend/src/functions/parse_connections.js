@@ -105,9 +105,7 @@ const parseInput = (input) => {
     inputData.completed = false
     inputData.numberTries = 0
   }
-
-  console.log(inputData)
+  return inputData
 }
 
-parseInput(failInput)
-parseInput(successInput)
+export default parseInput

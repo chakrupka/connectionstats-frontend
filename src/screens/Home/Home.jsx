@@ -8,7 +8,7 @@ const Home = ({ setPage }) => {
 
   return (
     <div className="home">
-      <div className="homeTitle">Connection Stats</div>
+      <div className="homeTitle">Connections Stats</div>
       <div className="homeSubtitles">
         <div onClick={() => handleClick(1)}>Add Your Game</div>
         <div onClick={() => handleClick(2)}>{"Today's Leaderboard"}</div>

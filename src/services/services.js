@@ -7,6 +7,7 @@ const sendGame = async (game) => {
       content: {
         number: game.number,
         sequence: game.sequence,
+        user: game.user,
       },
     });
     return res;

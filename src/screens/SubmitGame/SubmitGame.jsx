@@ -6,17 +6,30 @@ import PropTypes from "prop-types";
 
 const SubmitGame = ({ setPage }) => {
   const [newGame, setNewGame] = useState("");
+  const [newName, setNewName] = useState("");
   const [results, setResults] = useState(null);
+  const [next, setNext] = useState(false);
 
   const handleGameChange = (event) => {
     setNewGame(event.target.value);
     console.log(newGame);
   };
 
+  const handleNameChange = (event) => {
+    setNewName(event.target.value);
+    console.log(newGame);
+  };
+
+  const goNext = (event) => {
+    event.preventDefault();
+    setNext(true);
+  };
+
   const submitGame = (event) => {
     event.preventDefault();
     console.log(newGame);
     const preGame = formatGame(newGame);
+    preGame.user = newName;
     handleSendGame(preGame);
   };
 
@@ -42,27 +55,44 @@ const SubmitGame = ({ setPage }) => {
         Home
       </div>
       <div className="inputSection">
-        {!results && (
-          <form onSubmit={submitGame} className="gameForm">
-            <button
-              type="button"
-              className="submitButton"
-              onClick={() => pasteClipboardContent()}
-            >
-              Paste
-            </button>
-            <textarea
-              value={newGame}
-              onChange={handleGameChange}
-              className="gameInput"
-              id="paste-target"
-            />
-            <button type="submit" className="submitButton">
-              Submit
-            </button>
-          </form>
-        )}
-        {results && (
+        {!results ? (
+          !next ? (
+            <form onSubmit={goNext} className="gameForm">
+              <button
+                type="button"
+                className="submitButton"
+                onClick={() => pasteClipboardContent()}
+              >
+                Paste Game
+              </button>
+              <textarea
+                value={newGame}
+                onChange={handleGameChange}
+                className="gameInput"
+                id="paste-target"
+              />
+              <button type="submit" className="submitButton">
+                Next
+              </button>
+            </form>
+          ) : (
+            <div className="enterNameContainer">
+              <div style={{ fontSize: 37, marginTop: "10dvh" }}>
+                Enter a name:
+              </div>
+              <form onSubmit={submitGame} className="nameForm">
+                <input
+                  className="nameInput"
+                  value={newName}
+                  onChange={handleNameChange}
+                ></input>
+                <button type="submit" className="submitButton">
+                  Submit
+                </button>
+              </form>
+            </div>
+          )
+        ) : (
           <div className="results">
             <div>Completed: {results.score ? "Yes" : "No"}</div>
             <div>Number of guesses: {results.tries}</div>

@@ -9,6 +9,14 @@ const SubmitGame = ({ setPage }) => {
   const [newName, setNewName] = useState("");
   const [results, setResults] = useState(null);
   const [next, setNext] = useState(false);
+  const placeholder = `Instructions:
+  1. Open NYTimes Games
+  2. Go to Connections
+  3. "View Results"
+  4. "Share Your Results"
+  5. If on mobile, find the "Copy" option
+  6. Return & "Paste Game"
+  7. Accept prompts`;
 
   const handleGameChange = (event) => {
     setNewGame(event.target.value);
@@ -71,6 +79,7 @@ const SubmitGame = ({ setPage }) => {
                 onChange={handleGameChange}
                 className="gameInput"
                 id="paste-target"
+                placeholder={placeholder}
               />
               <button type="submit" className="submitButton">
                 Next

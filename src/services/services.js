@@ -17,4 +17,14 @@ const sendGame = async (game) => {
   }
 };
 
+const getTodaysGames = async (date) => {
+  try {
+    const res = await axios.get(`${url}/api/today`);
+    return res;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
 export default sendGame;

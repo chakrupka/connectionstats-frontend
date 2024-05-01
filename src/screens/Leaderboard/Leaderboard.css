@@ -114,15 +114,21 @@
   width: 20px;
 }
 
+.lbList.rank {
+  text-align: end;
+}
 .lbList.name {
   margin-left: 20px;
   width: 120px;
+  text-align: start;
 }
 .lbList.score {
   margin-left: 10px;
   width: 20px;
+  text-align: end;
 }
 .lbList.tries {
   width: 20px;
   margin-left: 40px;
+  text-align: end;
 }

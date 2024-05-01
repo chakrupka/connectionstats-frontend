@@ -1,0 +1,43 @@
+.home {
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.homeTitle {
+  color: #000;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 15dvh;
+  margin-left: 8dvw;
+}
+
+.homeSubtitles {
+  display: flex;
+  flex-direction: column;
+  margin-top: 17px;
+  margin-left: 10dvw;
+  gap: 24px;
+  font-size: 26px;
+}
+
+.homeSubtitles div {
+  color: black;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.homeSubtitles a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  width: fit-content;
+}

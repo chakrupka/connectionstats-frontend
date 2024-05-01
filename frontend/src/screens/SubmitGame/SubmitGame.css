@@ -1,0 +1,59 @@
+.backButton {
+  margin-left: 7dvw;
+  margin-top: 4dvh;
+  cursor: pointer;
+  font-size: 30px;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10dvh;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  font-size: 26px;
+  gap: 10px;
+}
+
+.checkLeaderboard {
+  margin-top: 10px;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.gameForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.gameInput {
+  height: 180px;
+  width: 187px;
+  border: 1px solid black;
+  border-radius: 9px;
+  text-align: center;
+  padding: 5px;
+}
+
+.submitButton {
+  height: 56px;
+  width: 187px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 9px;
+  font-size: 23px;
+  color: black;
+  font-weight: 400;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
-import formatGame from "../../utils/formatGame.js";
-import sendGame from "../../services/services.js";
+import { prepGame } from "../../utils/formatGame.js";
+import { sendGame } from "../../services/services.js";
 import "./SubmitGame.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
@@ -22,13 +22,14 @@ const SubmitGame = ({ setPage }) => {
 
   const goNext = (event) => {
     event.preventDefault();
+    // add test
     setNext(true);
   };
 
   const submitGame = (event) => {
     event.preventDefault();
     console.log(newGame);
-    const preGame = formatGame(newGame);
+    const preGame = prepGame(newGame);
     preGame.user = newName;
     handleSendGame(preGame);
   };

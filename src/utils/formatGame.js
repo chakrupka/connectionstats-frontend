@@ -4,8 +4,23 @@ const colorToChar = (input) => {
   const colorChars = ["y", "g", "b", "p"];
 
   for (let j = 0; j < sequence.length; j++) {
+    sequence[j] = sequence[j].slice(0, 8);
     for (let i = 0; i < 4; i++) {
       sequence[j] = sequence[j].replaceAll(colorEmojis[i], colorChars[i]);
+    }
+  }
+
+  return sequence;
+};
+
+const charToColor = (input) => {
+  let sequence = input;
+  const colorEmojis = ["🟨", "🟩", "🟦", "🟪"];
+  const colorChars = ["y", "g", "b", "p"];
+
+  for (let j = 0; j < sequence.length; j++) {
+    for (let i = 0; i < 4; i++) {
+      sequence[j] = sequence[j].replaceAll(colorChars[i], colorEmojis[i]);
     }
   }
 
@@ -28,7 +43,7 @@ const removeTrailing = (input) => {
   return endLine;
 };
 
-const formatGame = (input) => {
+export const prepGame = (input) => {
   const game = {};
   const inputLines = input.split("\n");
   const validLines = inputLines.slice(0, removeTrailing(inputLines));
@@ -37,6 +52,12 @@ const formatGame = (input) => {
   game.sequence = colorToChar(validLines.slice(2));
 
   return game;
+};
+
+export const getGameStr = (game) => {
+  const colorArray = charToColor(game.sequence);
+  let gameStr = colorArray.join(`\n`);
+  return gameStr;
 };
 
 // const failInput = `Connections
@@ -48,6 +69,6 @@ const formatGame = (input) => {
 // 🟩🟪🟪🟩
 // 🟪🟪🟩🟩`;
 
-// console.log(formatGame(failInput));
-
-export default formatGame;
+// const formatted = prepGame(failInput);
+// console.log(formatted);
+// console.log(getGameStr(formatted));

@@ -1,7 +1,7 @@
 import axios from "axios";
 const url = import.meta.env.VITE_BACKEND_URL;
 
-const sendGame = async (game) => {
+export const sendGame = async (game) => {
   try {
     const res = await axios.post(`${url}/api/game`, {
       content: {
@@ -17,14 +17,12 @@ const sendGame = async (game) => {
   }
 };
 
-const getTodaysGames = async (date) => {
+export const getTodaysGames = async (date) => {
   try {
     const res = await axios.get(`${url}/api/today`);
-    return res;
+    return res.data;
   } catch (err) {
     console.log(err);
     return null;
   }
 };
-
-export default sendGame;

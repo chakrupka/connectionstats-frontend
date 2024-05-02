@@ -3,7 +3,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 export const sendGame = async (game) => {
   try {
-    const res = await axios.post(`${url}/api/game`, {
+    const res = await axios.post(`${url}/api/games/game`, {
       content: {
         number: game.number,
         sequence: game.sequence,
@@ -19,7 +19,7 @@ export const sendGame = async (game) => {
 
 export const getTodaysGames = async (date) => {
   try {
-    const res = await axios.get(`${url}/api/today`);
+    const res = await axios.get(`${url}/api/games/today`);
     return res.data;
   } catch (err) {
     console.log(err);

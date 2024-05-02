@@ -9,6 +9,7 @@ const Leaderboard = ({ setPage }) => {
   const [games, setGames] = useState(null);
   useEffect(() => {
     handleGetGames();
+    // setGames([]);
   }, []);
 
   const handleGetGames = async () => {
@@ -29,7 +30,7 @@ const Leaderboard = ({ setPage }) => {
       <div className="lbMain">
         <div className="lbDate">
           <div>{printDate(newDate())}</div>
-          <div>#{games && games[0].number}</div>
+          <div>{games && games.length > 0 ? `#${games[0].number}` : ""}</div>
         </div>
         <div className="lbPodiumContainer">
           <div className="lbPodiumSection">

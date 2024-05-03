@@ -1,17 +1,8 @@
-export const newDate = () => {
-  var currentDate = new Date();
-  var day = currentDate.getDate().toString();
-  var month = (currentDate.getMonth() + 1).toString();
-  var year = currentDate.getFullYear().toString();
+import { DateTime } from "luxon";
 
-  if (day < 10) {
-    day = `0${day}`;
-  }
-  if (month < 10) {
-    month = `0${month}`;
-  }
-
-  return `${year}-${month}-${day}`;
+const newDate = () => {
+  const dt = DateTime.now().setZone("America/New_York");
+  return dt.toFormat("yyyy-LL-dd");
 };
 
 export const printDate = (dateStr) => {

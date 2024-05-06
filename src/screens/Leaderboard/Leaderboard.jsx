@@ -192,7 +192,7 @@ const Leaderboard = ({ setPage }) => {
               </div>
               <div className="lbListCol number">
                 {allGames.slice(0, 10).map((game, index) => (
-                  <div key={index}>#{game.number}</div>
+                  <div key={index}>{game.number}</div>
                 ))}
               </div>
             </>

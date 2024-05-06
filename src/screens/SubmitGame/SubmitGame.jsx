@@ -38,7 +38,7 @@ const SubmitGame = ({ setPage }) => {
     event.preventDefault();
     console.log(newGame);
     const preGame = prepGame(newGame);
-    preGame.user = newName;
+    preGame.user = newName.replaceAll(" ", "");
     handleSendGame(preGame);
   };
 

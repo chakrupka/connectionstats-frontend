@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-const newDate = () => {
+export const newDate = () => {
   const dt = DateTime.now().setZone("America/New_York");
   return dt.toFormat("yyyy-LL-dd");
 };
@@ -26,5 +26,3 @@ export const printDate = (dateStr) => {
 
   return `${month} ${day}, ${dateValues[0]}`;
 };
-
-export default newDate;

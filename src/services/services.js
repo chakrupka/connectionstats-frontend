@@ -26,3 +26,13 @@ export const getTodaysGames = async (date) => {
     return null;
   }
 };
+
+export const getAllGames = async (date) => {
+  try {
+    const res = await axios.get(`${url}/api/games/all`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};

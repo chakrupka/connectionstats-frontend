@@ -54,10 +54,9 @@ export const prepGame = (input) => {
   return game;
 };
 
-export const getGameStr = (game) => {
+export const getColorArray = (game) => {
   const colorArray = charToColor(game.sequence);
-  let gameStr = colorArray.join(`\n`);
-  return gameStr;
+  return colorArray;
 };
 
 // const failInput = `Connections

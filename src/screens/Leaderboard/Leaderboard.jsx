@@ -3,10 +3,14 @@ import { getTodaysGames, getAllGames } from "../../services/services.js";
 import { newDate, printDate } from "../../utils/formatDate.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
+import { getColorArray } from "../../utils/formatGame.js";
 
 const Leaderboard = ({ setPage }) => {
   const [todaysGames, setTodaysGames] = useState(null);
   const [allGames, setAllGames] = useState(null);
+  const [showGamePopup, setShowGamePopup] = useState(false);
+  const [popupGame, setPopupGame] = useState(null);
+
   useEffect(() => {
     handleGetToday();
     handleGetAll();
@@ -33,11 +37,46 @@ const Leaderboard = ({ setPage }) => {
     }
   };
 
+  const handleNameClick = (info, event) => {
+    event.stopPropagation();
+    handleShowPopup(info);
+  };
+
+  const handleShowPopup = (info) => {
+    console.log("Show popup");
+    setPopupGame(info);
+    setShowGamePopup(true);
+    document.addEventListener("click", handleClosePopup);
+  };
+
+  const handleClosePopup = () => {
+    document.removeEventListener("click", handleClosePopup);
+    console.log("Close popup");
+    setShowGamePopup(false);
+    setPopupGame(null);
+  };
+
   return (
     <div>
       <div className="backButton" onClick={() => setPage(0)}>
         Home
       </div>
+      <>
+        {showGamePopup && (
+          <div className="lbPopupScreen">
+            <div className="lbPopup">
+              <div>Connections</div>
+              <div>Puzzle #{popupGame.number}</div>
+              <>
+                {getColorArray(popupGame).map((row, index) => (
+                  <div key={index}>{row}</div>
+                ))}
+              </>
+              <div className="lbPopupCloseText">Tap anywhere</div>
+            </div>
+          </div>
+        )}
+      </>
       <div className="lbMain">
         <div className="lbDate">
           <div>{printDate(newDate())}</div>
@@ -84,7 +123,7 @@ const Leaderboard = ({ setPage }) => {
           <div className="lbSecTitle rank">Rank</div>
           <div className="lbSecTitle name">Name</div>
           <div className="lbSecTitle score">Score</div>
-          <div className="lbSecTitle tries">Guesses</div>
+          <div className="lbSecTitle tries">Errors</div>
         </div>
         <div className="lbLine"></div>
         <div className="lbList">
@@ -97,7 +136,12 @@ const Leaderboard = ({ setPage }) => {
               </div>
               <div className="lbListCol name">
                 {todaysGames.map((game, index) => (
-                  <div key={index}>{game.user}</div>
+                  <div
+                    key={index}
+                    onClick={(event) => handleNameClick(game, event)}
+                  >
+                    {game.user}
+                  </div>
                 ))}
               </div>
               <div className="lbListCol score">
@@ -107,7 +151,7 @@ const Leaderboard = ({ setPage }) => {
               </div>
               <div className="lbListCol tries">
                 {todaysGames.map((game, index) => (
-                  <div key={index}>{game.tries}</div>
+                  <div key={index}>{-4 + game.tries}</div>
                 ))}
               </div>
             </>
@@ -133,7 +177,12 @@ const Leaderboard = ({ setPage }) => {
               </div>
               <div className="lbListCol name">
                 {allGames.slice(0, 10).map((game, index) => (
-                  <div key={index}>{game.user}</div>
+                  <div
+                    key={index}
+                    onClick={(event) => handleNameClick(game, event)}
+                  >
+                    {game.user}
+                  </div>
                 ))}
               </div>
               <div className="lbListCol score">

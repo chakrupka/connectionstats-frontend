@@ -121,11 +121,16 @@
 }
 
 .lbSecTitle.name {
-  margin-right: 60px;
+  margin-right: 80px;
 }
 
 .lbSecTitle.tries {
-  margin-left: -25px;
+  margin-left: -20px;
+  margin-right: -10px;
+}
+
+.lbSecTitle.game {
+  margin-left: -10px;
   margin-right: -10px;
 }
 
@@ -142,8 +147,8 @@
   width: 280px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  gap: 20px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .lbListCol {
@@ -158,12 +163,13 @@
 .lbListCol.name {
   text-align: left;
   cursor: pointer;
+  min-width: 120px;
 }
 .lbListCol.score {
   text-align: right;
 }
 .lbListCol.tries {
-  text-align: right;
+  text-align: center;
 }
 .lbListCol.number {
   text-align: left;

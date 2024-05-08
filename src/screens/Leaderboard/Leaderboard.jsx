@@ -146,7 +146,7 @@ const Leaderboard = ({ setPage }) => {
               </div>
               <div className="lbListCol score">
                 {todaysGames.map((game, index) => (
-                  <div key={index}>{game.score}</div>
+                  <div key={index}>{game.score ? game.score : "✗"}</div>
                 ))}
               </div>
               <div className="lbListCol tries">

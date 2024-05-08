@@ -21,7 +21,11 @@ const Leaderboard = ({ setPage }) => {
     const res = await getTodaysGames();
     if (res) {
       console.log("Fetched games");
-      setTodaysGames(res.sort((a, b) => b.score - a.score));
+      setTodaysGames(
+        res.sort((a, b) =>
+          b.score - a.score === 0 ? a.tries - b.tries : b.score - a.score
+        )
+      );
     } else {
       console.log("Failed to load games");
     }
@@ -31,7 +35,11 @@ const Leaderboard = ({ setPage }) => {
     const res = await getAllGames();
     if (res) {
       console.log("Fetched games");
-      setAllGames(res.sort((a, b) => b.score - a.score));
+      setAllGames(
+        res.sort((a, b) =>
+          b.score - a.score === 0 ? a.tries - b.tries : b.score - a.score
+        )
+      );
     } else {
       console.log("Failed to load games");
     }

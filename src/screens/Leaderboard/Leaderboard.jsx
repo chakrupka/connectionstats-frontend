@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./Leaderboard.css";
 import { getColorArray } from "../../utils/formatGame.js";
 import { Link } from "react-router-dom";
+import getPuzzleNum from "../../utils/getPuzzleNum.js";
 
 const Leaderboard = () => {
   const [todaysGames, setTodaysGames] = useState(null);
@@ -88,11 +89,7 @@ const Leaderboard = () => {
       <div className="lbMain">
         <div className="lbDate">
           <div>{printDate(newDate())}</div>
-          <div>
-            {todaysGames && todaysGames.length > 0
-              ? `#${todaysGames[0].number}`
-              : ""}
-          </div>
+          <div>#{getPuzzleNum()}</div>
         </div>
         <div className="lbPodiumContainer">
           <div className="lbPodiumSection">

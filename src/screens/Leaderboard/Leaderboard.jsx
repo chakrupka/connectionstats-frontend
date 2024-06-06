@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
 import { getTodaysGames, getAllGames } from "../../services/services.js";
 import { newDate, printDate } from "../../utils/formatDate.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
 import { getColorArray } from "../../utils/formatGame.js";
+import { Link } from "react-router-dom";
 
-const Leaderboard = ({ setPage }) => {
+const Leaderboard = () => {
   const [todaysGames, setTodaysGames] = useState(null);
   const [allGames, setAllGames] = useState(null);
   const [showGamePopup, setShowGamePopup] = useState(false);
@@ -65,10 +65,10 @@ const Leaderboard = ({ setPage }) => {
   };
 
   return (
-    <div>
-      <div className="backButton" onClick={() => setPage(0)}>
+    <div style={{ marginTop: "4dvh" }}>
+      <Link to={"/"} className="backButton">
         Home
-      </div>
+      </Link>
       <>
         {showGamePopup && (
           <div className="lbPopupScreen">
@@ -211,10 +211,6 @@ const Leaderboard = ({ setPage }) => {
       </div>
     </div>
   );
-};
-
-Leaderboard.propTypes = {
-  setPage: PropTypes.func.isRequired,
 };
 
 export default Leaderboard;

@@ -8,7 +8,7 @@
 
 * {
   font-family: inherit;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 html {
@@ -18,4 +18,8 @@ html {
 body {
   padding: 0;
   margin: 0;
+}
+
+a {
+  color: black;
 }

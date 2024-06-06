@@ -2,9 +2,9 @@ import { prepGame } from "../../utils/formatGame.js";
 import { sendGame } from "../../services/services.js";
 import "./SubmitGame.css";
 import { useState } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const SubmitGame = ({ setPage }) => {
+const SubmitGame = () => {
   const [newGame, setNewGame] = useState("");
   const [newName, setNewName] = useState("");
   const [results, setResults] = useState(null);
@@ -59,10 +59,10 @@ const SubmitGame = ({ setPage }) => {
   };
 
   return (
-    <div className="mainSubmit">
-      <div className="backButton" onClick={() => setPage(0)}>
+    <div style={{ marginTop: "4dvh" }}>
+      <Link to={"/"} className="backButton">
         Home
-      </div>
+      </Link>
       <div className="inputSection">
         {!results ? (
           !next ? (
@@ -107,18 +107,14 @@ const SubmitGame = ({ setPage }) => {
             <div>Completed: {results.score ? "Yes" : "No"}</div>
             <div>Number of guesses: {results.tries}</div>
             <div>Score: {results.score ? results.score : "0"}</div>
-            <div className="checkLeaderboard" onClick={() => setPage(2)}>
+            <Link to={"/leaderboard"} className="checkLeaderboard">
               Check Leaderboard
-            </div>
+            </Link>
           </div>
         )}
       </div>
     </div>
   );
-};
-
-SubmitGame.propTypes = {
-  setPage: PropTypes.func.isRequired,
 };
 
 export default SubmitGame;

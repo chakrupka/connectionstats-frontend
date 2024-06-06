@@ -1,6 +1,5 @@
 .backButton {
   margin-left: 7dvw;
-  margin-top: 4dvh;
   cursor: pointer;
   font-size: 30px;
   text-decoration-line: underline;
@@ -39,7 +38,7 @@
 
 .gameInput {
   height: 180px;
-  width: 187px;
+  /* width: 187px; */
   border: 1px solid black;
   border-radius: 9px;
   text-align: center;

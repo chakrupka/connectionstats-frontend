@@ -4,11 +4,9 @@ const url = import.meta.env.VITE_BACKEND_URL;
 export const sendGame = async (game) => {
   try {
     const res = await axios.post(`${url}/api/games/game`, {
-      content: {
-        number: game.number,
-        sequence: game.sequence,
-        user: game.user,
-      },
+      number: game.number,
+      sequence: game.sequence,
+      user: game.user,
     });
     return res;
   } catch (err) {

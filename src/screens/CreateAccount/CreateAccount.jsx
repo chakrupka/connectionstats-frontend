@@ -14,6 +14,12 @@ const CreateAccount = () => {
   const [errCount, setErrCount] = useState(0);
   const navigate = useNavigate();
 
+  const handleBlur = () => {
+    if (name.trim() !== "") {
+      setName(name.charAt(0).toUpperCase() + name.slice(1));
+    }
+  };
+
   const handleCreateUser = async (event) => {
     event.preventDefault();
     try {
@@ -30,13 +36,9 @@ const CreateAccount = () => {
     } catch (err) {
       console.log();
       if (err.response.data.error.includes("username")) {
-        setErrMessage(
-          `Username already exists ${errCount > 0 ? `(${errCount})` : ""}`
-        );
+        setErrMessage("Username already exists");
       } else {
-        setErrMessage(
-          `Incorrect credentials ${errCount > 0 ? `(${errCount})` : ""}`
-        );
+        setErrMessage("Error with credentials");
       }
       setErrCount(errCount + 1);
     }
@@ -57,26 +59,13 @@ const CreateAccount = () => {
             justifyContent: "center",
           }}
         >
-          <div style={{ marginTop: "3dvh", marginBottom: "1dvh" }}>Name</div>
-          <input
-            type="text"
-            autoCapitalize="off"
-            required
-            value={name}
-            name="Name"
-            onChange={({ target }) => setName(target.value)}
-            className="loginInput"
-          />
-          <div className="infoText">
-            Name must be one word, at least 2 letters long. Names with spaces or
-            special characters will not be accepted.{" "}
-          </div>
           <div style={{ marginTop: "3dvh", marginBottom: "1dvh" }}>
             Username
           </div>
           <input
             type="text"
             autoCapitalize="off"
+            spellCheck="false"
             required
             value={username}
             name="Username"
@@ -85,19 +74,38 @@ const CreateAccount = () => {
           />
           <div className="infoText">
             Username must be at least 3 characters long. Periods and underscores
-            are allowed. Must not begin or end with a period.
+            are allowed. Must not begin or end with a period. This will be{" "}
+            <b style={{ fontWeight: "bolder", color: "black" }}>public</b>.
+          </div>
+          <div style={{ marginTop: "3dvh", marginBottom: "1dvh" }}>Name</div>
+          <input
+            type="text"
+            spellCheck="false"
+            autoCapitalize="on"
+            required
+            value={name}
+            onBlur={handleBlur}
+            name="Name"
+            onChange={({ target }) => setName(target.value)}
+            className="loginInput"
+          />
+          <div className="infoText">
+            Name must be one word, at least 2 letters long. Names with spaces or
+            special characters will not be accepted. This will be{" "}
+            <b style={{ fontWeight: "bolder", color: "black" }}>private</b>.
           </div>
           <div style={{ marginTop: "3dvh", marginBottom: "1dvh" }}>
             Password
           </div>
           <input
             type="text"
+            autoCapitalize="off"
+            spellCheck="false"
             required
             value={password}
             name="Password"
             onChange={({ target }) => setPassword(target.value)}
             className="loginInput"
-            autoCapitalize="off"
           />
           <div className="infoText">
             Password must be between 6 and 20 characters long, and may be any

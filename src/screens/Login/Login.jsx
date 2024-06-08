@@ -33,9 +33,7 @@ const Login = () => {
       setPassword("");
       navigate("/");
     } catch (err) {
-      setErrMessage(
-        `Incorrect credentials ${errCount > 0 ? `(${errCount})` : ""}`
-      );
+      setErrMessage("Incorrect credentials");
       setPassword("");
       setErrCount(errCount + 1);
     }
@@ -62,6 +60,7 @@ const Login = () => {
           <input
             type="text"
             autoCapitalize="off"
+            spellCheck="false"
             required
             value={username}
             name="Username"
@@ -73,12 +72,13 @@ const Login = () => {
           </div>
           <input
             type="text"
+            autoCapitalize="off"
+            spellCheck="false"
             required
             value={password}
             name="Password"
             onChange={({ target }) => setPassword(target.value)}
             className="loginInput"
-            autoCapitalize="off"
           />
           <button type="submit" className="loginButton">
             Log in

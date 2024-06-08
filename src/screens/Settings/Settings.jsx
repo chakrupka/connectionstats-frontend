@@ -37,9 +37,10 @@ const Settings = () => {
             onClick={handleLogOut}
             className="loginButton"
             style={{
-              marginLeft: "13.5dvh",
+              marginLeft: "12.5dvh",
               width: "22dvh",
               paddingTop: "1dvh",
+              paddingRight: "1dvh",
             }}
           >
             👋 Log Out

@@ -1,0 +1,54 @@
+.loginButton {
+  margin-top: 5dvh;
+  background: white;
+  color: black;
+  font-size: 3.5dvh;
+  font-weight: normal;
+  border: 1px solid grey;
+  border-radius: 9px;
+  padding-bottom: 5px;
+  width: 18dvh;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.loginButton:hover {
+  background: #f2f2f2;
+}
+
+.loginInput {
+  width: 35dvh;
+  height: 4dvh;
+  font-size: 2.5dvh;
+  border: 1px solid grey;
+  border-radius: 9px;
+  padding-left: 10px;
+}
+
+.infoText {
+  margin-top: 0.5dvh;
+  width: 36dvh;
+  font-size: 1.8dvh;
+  color: rgb(69, 69, 69);
+  text-align: justify;
+}
+
+.errorMessage {
+  margin-top: 5dvh;
+  width: 38dvh;
+  height: 4dvh;
+  background: rgb(255, 198, 198);
+  color: black;
+  text-align: center;
+  font-size: 3.5dvh;
+  padding: 0.5dvh 1dvh 1.5dvh;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 9px;
+}
+
+@media screen and (max-width: 800px) {
+  .infoText {
+    margin-left: 0dvh;
+    width: 38dvh;
+  }
+}

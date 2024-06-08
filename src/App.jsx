@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import UserHome from "./screens/Home/UserHome";
+import GuestHome from "./screens/Home/GuestHome";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -12,7 +13,7 @@ const App = () => {
     }
   }, []);
 
-  return user !== null ? <UserHome user={user} /> : <></>;
+  return user === null ? <GuestHome /> : <UserHome user={user} />;
 };
 
 export default App;

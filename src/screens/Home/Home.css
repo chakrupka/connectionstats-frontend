@@ -1,43 +1,31 @@
-.home {
-  height: 100dvh;
-  width: 100dvw;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.homeTitle {
-  color: #000;
-  font-size: 44px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 15dvh;
-  margin-left: 8dvw;
-}
-
-.homeSubtitles {
-  display: flex;
-  flex-direction: column;
-  margin-top: 17px;
-  margin-left: 10dvw;
-  gap: 24px;
-  font-size: 26px;
-}
-
-.homeSubtitles div {
+.bigLinkText {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  width: fit-content;
   color: black;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  cursor: pointer;
-  width: fit-content;
 }
 
-.homeSubtitles a {
+.smallLinkText {
   text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
   cursor: pointer;
   width: fit-content;
+  color: black;
+}
+
+.homeButton {
+  border: 1.5px solid lightgrey;
+  width: 35dvh;
+  height: 6dvh;
+  padding-top: 0.5dvh;
+  text-decoration: none;
+  border-radius: 9px;
+  transition: 0.2s;
+}
+
+.homeButton:hover {
+  background: #f2f2f2;
 }

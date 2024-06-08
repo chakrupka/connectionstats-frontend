@@ -6,6 +6,10 @@ import { StrictMode } from "react";
 import ErrorPage from "./screens/Error/error-page";
 import SubmitGame from "./screens/SubmitGame/SubmitGame";
 import Leaderboard from "./screens/Leaderboard/Leaderboard";
+import Login from "./screens/Login/Login";
+import CreateAccount from "./screens/CreateAccount/CreateAccount";
+import Placeholder from "./screens/Placeholder/Placeholder";
+import Settings from "./screens/Settings/Settings";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +22,30 @@ const router = createBrowserRouter([
     element: <SubmitGame />,
     errorElement: <ErrorPage />,
   },
+
   {
     path: "leaderboard",
     element: <Leaderboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "setup",
+    element: <CreateAccount />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "stats",
+    element: <Placeholder />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "settings",
+    element: <Settings />,
     errorElement: <ErrorPage />,
   },
 ]);

@@ -59,6 +59,8 @@ export const getColorArray = (game) => {
   return colorArray;
 };
 
+export default { prepGame, getColorArray };
+
 // const failInput = `Connections
 // Puzzle #282
 // 🟨🟨🟨🟨

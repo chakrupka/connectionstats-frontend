@@ -1,14 +1,24 @@
 import { prepGame } from "../../utils/formatGame.js";
-import { sendGame } from "../../services/services.js";
+import { sendGame, setToken } from "../../services/game_service.js";
 import "./SubmitGame.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SubmitGame = () => {
   const [newGame, setNewGame] = useState("");
-  const [newName, setNewName] = useState("");
   const [results, setResults] = useState(null);
-  const [next, setNext] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setToken(user.token);
+    } else {
+      navigate("/");
+    }
+  }, []);
+
   const placeholder = `Instructions:
   1. Open NYTimes Games
   2. Go to Connections
@@ -16,7 +26,8 @@ const SubmitGame = () => {
   4. "Share Your Results"
   5. If on mobile, find the "Copy" option
   6. Return & "Paste Game"
-  7. Accept prompts`;
+  7. Accept prompts
+  8. Submit`;
 
   const handleGameChange = (event) => {
     setNewGame(event.target.value);
@@ -28,17 +39,10 @@ const SubmitGame = () => {
     console.log(newGame);
   };
 
-  const goNext = (event) => {
-    event.preventDefault();
-    // add test
-    setNext(true);
-  };
-
   const submitGame = (event) => {
     event.preventDefault();
     console.log(newGame);
     const preGame = prepGame(newGame);
-    preGame.user = newName.replaceAll(" ", "");
     handleSendGame(preGame);
   };
 
@@ -46,7 +50,7 @@ const SubmitGame = () => {
     const res = await sendGame(game);
     if (res) {
       console.log("Game sent succesfully", res);
-      setResults(res.data);
+      setResults(res);
     } else {
       console.log("Failed to send game");
     }
@@ -59,14 +63,14 @@ const SubmitGame = () => {
   };
 
   return (
-    <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
-        Home
-      </Link>
-      <div className="inputSection">
-        {!results ? (
-          !next ? (
-            <form onSubmit={goNext} className="gameForm">
+    <>
+      <div style={{ marginTop: "4dvh" }}>
+        <Link to={"/"} className="backButton">
+          Home
+        </Link>
+        <div className="inputSection">
+          {!results ? (
+            <form onSubmit={submitGame} className="gameForm">
               <button
                 type="button"
                 className="submitButton"
@@ -82,38 +86,22 @@ const SubmitGame = () => {
                 placeholder={placeholder}
               />
               <button type="submit" className="submitButton">
-                Next
+                Submit
               </button>
             </form>
           ) : (
-            <div className="enterNameContainer">
-              <div style={{ fontSize: 37, marginTop: "10dvh" }}>
-                Enter a name:
-              </div>
-              <form onSubmit={submitGame} className="nameForm">
-                <input
-                  className="nameInput"
-                  value={newName}
-                  onChange={handleNameChange}
-                ></input>
-                <button type="submit" className="submitButton">
-                  Submit
-                </button>
-              </form>
+            <div className="results">
+              <div>Completed: {results.score ? "Yes" : "No"}</div>
+              <div>Number of guesses: {results.tries}</div>
+              <div>Score: {results.score ? results.score : "0"}</div>
+              <Link to={"/leaderboard"} className="checkLeaderboard">
+                Check Leaderboard
+              </Link>
             </div>
-          )
-        ) : (
-          <div className="results">
-            <div>Completed: {results.score ? "Yes" : "No"}</div>
-            <div>Number of guesses: {results.tries}</div>
-            <div>Score: {results.score ? results.score : "0"}</div>
-            <Link to={"/leaderboard"} className="checkLeaderboard">
-              Check Leaderboard
-            </Link>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

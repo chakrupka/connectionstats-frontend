@@ -1,4 +1,4 @@
-import { getTodaysGames, getAllGames } from "../../services/services.js";
+import { getTodaysGames, getAllGames } from "../../services/game_service.js";
 import { newDate, printDate } from "../../utils/formatDate.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
@@ -11,11 +11,16 @@ const Leaderboard = () => {
   const [allGames, setAllGames] = useState(null);
   const [showGamePopup, setShowGamePopup] = useState(false);
   const [popupGame, setPopupGame] = useState(null);
+  const [banner, setBanner] = useState("");
 
   useEffect(() => {
     handleGetToday();
     handleGetAll();
     // setGames([]);
+    setBanner("Major updates to the leaderboard coming soon!");
+    setTimeout(() => {
+      setBanner("");
+    }, 5000);
   }, []);
 
   const handleGetToday = async () => {
@@ -87,6 +92,21 @@ const Leaderboard = () => {
         )}
       </>
       <div className="lbMain">
+        {banner !== "" && (
+          <div
+            style={{
+              marginTop: "2dvh",
+              marginBottom: "-2dvh",
+              border: "1px solid lightgrey",
+              borderRadius: "5px",
+              width: "52dvh",
+              textAlign: "center",
+              background: "rgb(255, 240, 240)",
+            }}
+          >
+            {banner}
+          </div>
+        )}
         <div className="lbDate">
           <div>{printDate(newDate())}</div>
           <div>#{getPuzzleNum()}</div>
@@ -96,7 +116,7 @@ const Leaderboard = () => {
             <div className="lbPodiumName">
               {todaysGames
                 ? todaysGames[1]
-                  ? todaysGames[1].user
+                  ? todaysGames[1].user.username
                   : ""
                 : "Loading..."}
             </div>
@@ -106,7 +126,7 @@ const Leaderboard = () => {
             <div className="lbPodiumName">
               {todaysGames
                 ? todaysGames[0]
-                  ? todaysGames[0].user
+                  ? todaysGames[0].user.username
                   : ""
                 : "Loading..."}
             </div>
@@ -116,7 +136,7 @@ const Leaderboard = () => {
             <div className="lbPodiumName">
               {todaysGames
                 ? todaysGames[2]
-                  ? todaysGames[2].user
+                  ? todaysGames[2].user.username
                   : ""
                 : "Loading..."}
             </div>
@@ -145,7 +165,7 @@ const Leaderboard = () => {
                     key={index}
                     onClick={(event) => handleNameClick(game, event)}
                   >
-                    {game.user}
+                    {game.user.username}
                   </div>
                 ))}
               </div>
@@ -186,7 +206,7 @@ const Leaderboard = () => {
                     key={index}
                     onClick={(event) => handleNameClick(game, event)}
                   >
-                    {game.user}
+                    {game.user.username}
                   </div>
                 ))}
               </div>

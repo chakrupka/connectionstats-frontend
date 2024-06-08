@@ -14,13 +14,6 @@ const UserHome = ({ user }) => {
         alignItems: "center",
       }}
     >
-      {/* <div style={{ fontSize: "6.5dvh" }}>Connections Stats</div>
-      <div style={{ fontSize: "2.5dvh", marginTop: "-0.5dvh" }}>
-        Created with ❤️ by{" "}
-        <a className="smallLinkText" href="https://linkedin.com/in/cha-krupka">
-          Cha
-        </a>
-      </div> */}
       <div style={{ fontSize: "5dvh", marginTop: "-5dvh" }}>
         Hello, {user.name}!
       </div>
@@ -53,27 +46,6 @@ const UserHome = ({ user }) => {
           ⚙️&nbsp;User Settings
         </Link>
       </div>
-      {/* <div
-        style={{
-          fontSize: 18,
-          position: "relative",
-          bottom: "-18dvh",
-        }}
-      >
-        <a
-          className="smallLinkText"
-          href="https://www.nytimes.com/2024/02/19/us/how-i-designed-my-perfect-connections-solve.html"
-        >
-          Scoring
-        </a>{" "}
-        |{" "}
-        <a
-          className="smallLinkText"
-          href="https://github.com/chakrupka/connectionstats-frontend"
-        >
-          Codebase
-        </a>
-      </div> */}
     </div>
   );
 };

@@ -72,38 +72,6 @@ const GuestHome = () => {
           📆 &nbsp;Leaderboard
         </Link>
       </div>
-      {/* <div
-        style={{
-          fontSize: "3.5dvh",
-          width: "30dvh",
-          textAlign: "center",
-          marginBottom: "5dvh",
-        }}
-      >
-        Please <Link className="bigLinkText">log in</Link> or{" "}
-        <Link className="bigLinkText">create a new account</Link>
-      </div> */}
-      {/* <div
-        style={{
-          fontSize: 18,
-          position: "relative",
-          bottom: "-18dvh",
-        }}
-      >
-        <a
-          className="smallLinkText"
-          href="https://www.nytimes.com/2024/02/19/us/how-i-designed-my-perfect-connections-solve.html"
-        >
-          Scoring
-        </a>{" "}
-        |{" "}
-        <a
-          className="smallLinkText"
-          href="https://github.com/chakrupka/connectionstats-frontend"
-        >
-          Codebase
-        </a>
-      </div> */}
     </div>
   );
 };

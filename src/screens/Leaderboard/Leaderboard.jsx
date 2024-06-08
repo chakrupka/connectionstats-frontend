@@ -1,4 +1,4 @@
-import { getTodaysGames, getAllGames } from "../../services/services.js";
+import { getTodaysGames, getAllGames } from "../../services/game_service.js";
 import { newDate, printDate } from "../../utils/formatDate.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";

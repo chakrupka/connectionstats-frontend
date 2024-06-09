@@ -34,7 +34,7 @@ const areDayApart = (date1, date2) => {
 };
 
 const isAStreak = (game1, game2) => {
-  if (!game1.score || !game2.score) return false;
+  if (game1.score === null || game2.score === null) return false;
   return game1.number + 1 === game2.number || game1.number - 1 === game2.number;
 };
 
@@ -51,7 +51,7 @@ const longestStreak = (gamesArray) => {
   while (pos1 < games.length) {
     let start = pos1,
       end = pos1;
-    if (!games[start].score) {
+    if (games[start].score === null) {
       pos1++;
       pos2++;
       continue;
@@ -71,10 +71,11 @@ const currentStreak = (gamesArray) => {
   if (!gamesArray || gamesArray.length < 1) {
     return 0;
   }
+
   const games = sortGames(gamesArray);
   if (
     games[games.length - 1].number !== getPuzzleNum() ||
-    !games[games.length - 1].score
+    games[games.length - 1].score === null
   ) {
     return 0;
   }

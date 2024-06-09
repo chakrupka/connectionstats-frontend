@@ -22,6 +22,26 @@ const UserHome = ({ user }) => {
   }, []);
 
   const StreakBanner = () => {
+    const [streak, setStreak] = useState("Checking streak...");
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      if (!loadingGames) {
+        setTimeout(() => {
+          const currentStreak = stats.currentStreak(games);
+          setLoading(false);
+        }, 500);
+      }
+    }, []);
+
+    if (loading) {
+      return (
+        <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
+          Checking streak...
+        </div>
+      );
+    }
+
     if (!loadingGames) {
       const streak = stats.currentStreak(games);
       console.log(streak);
@@ -51,8 +71,6 @@ const UserHome = ({ user }) => {
       );
     }
   };
-
-  if (loadingGames) return false;
 
   return (
     <div

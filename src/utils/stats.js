@@ -1,6 +1,5 @@
 import { newDate } from "./formatDate.js";
 import { DateTime } from "luxon";
-import sampleGames from "./games_for_testing.js";
 import getPuzzleNum from "./getPuzzleNum.js";
 
 const sortGames = (games) => {
@@ -101,8 +100,5 @@ const highestScore = (games) => {
   });
   return highGame;
 };
-
-console.log(longestStreak(sampleGames));
-console.log(currentStreak(sampleGames));
 
 export default { longestStreak, currentStreak, numSolved, highestScore };

@@ -1,8 +1,59 @@
 import { Link } from "react-router-dom";
 import getPuzzleNum from "../../utils/getPuzzleNum";
 import "./Home.css";
+import { useEffect, useState } from "react";
+import { getUserGames, setToken } from "../../services/game_service";
+import stats from "../../utils/stats";
 
 const UserHome = ({ user }) => {
+  const [games, setGames] = useState(null);
+  const [loadingGames, setLoadingGames] = useState(true);
+
+  useEffect(() => {
+    console.log("Loading games...");
+    setToken(user.token);
+    const loadGames = async () => {
+      const loadedGames = await getUserGames();
+      console.log("Loaded games:", loadedGames);
+      setGames(loadedGames);
+      setLoadingGames(false);
+    };
+    loadGames();
+  }, []);
+
+  const StreakBanner = () => {
+    if (!loadingGames) {
+      const streak = stats.currentStreak(games);
+      console.log(streak);
+      if (!streak) {
+        return (
+          <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
+            You are not on a streak 😢
+          </div>
+        );
+      }
+      return (
+        <div style={{ display: "flex" }}>
+          You are on a
+          <div
+            style={{
+              fontSize: "7dvh",
+              textAlign: "center",
+              marginTop: "-2.75dvh",
+              marginLeft: "2dvh",
+              marginRight: "2dvh",
+            }}
+          >
+            {streak}
+          </div>
+          day streak 🥳
+        </div>
+      );
+    }
+  };
+
+  if (loadingGames) return false;
+
   return (
     <div
       style={{
@@ -18,9 +69,12 @@ const UserHome = ({ user }) => {
         Hello, {user.name}!
       </div>
       <div
-        style={{ fontSize: "4dvh", marginBottom: "5dvh", marginTop: "1dvh" }}
+        style={{ fontSize: "4dvh", marginBottom: "4dvh", marginTop: "1dvh" }}
       >
         Today's puzzle is #{getPuzzleNum()}
+      </div>
+      <div style={{ fontSize: "3dvh", marginBottom: "2dvh" }}>
+        <StreakBanner />
       </div>
       <div
         style={{

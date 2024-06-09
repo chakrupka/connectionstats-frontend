@@ -10,6 +10,7 @@ import Login from "./screens/Login/Login";
 import CreateAccount from "./screens/CreateAccount/CreateAccount";
 import Placeholder from "./screens/Placeholder/Placeholder";
 import Settings from "./screens/Settings/Settings";
+import Stats from "./screens/Stats/Stats";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
   },
   {
     path: "stats",
-    element: <Placeholder />,
+    element: <Stats />,
     errorElement: <ErrorPage />,
   },
   {

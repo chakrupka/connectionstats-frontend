@@ -21,7 +21,7 @@ export const sendGame = async (game) => {
   }
 };
 
-export const getTodaysGames = async (date) => {
+export const getTodaysGames = async () => {
   try {
     const res = await axios.get(`${url}/today`);
     return res.data;
@@ -31,9 +31,13 @@ export const getTodaysGames = async (date) => {
   }
 };
 
-export const getAllGames = async (date) => {
+export const getAllGames = async () => {
   try {
-    const res = await axios.get(`${url}/all`);
+    // const config = {
+    //   headers: { Authorization: token },
+    // };
+    // const res = await axios.get(url, config);
+    const res = await axios.get(url);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -41,4 +45,24 @@ export const getAllGames = async (date) => {
   }
 };
 
-export default { setToken, sendGame, getTodaysGames, getAllGames };
+export const getUserGames = async () => {
+  try {
+    const config = {
+      headers: { Authorization: token },
+    };
+
+    const res = await axios.get(`${url}/user`, config);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
+export default {
+  setToken,
+  sendGame,
+  getTodaysGames,
+  getAllGames,
+  getUserGames,
+};

@@ -63,45 +63,43 @@ const SubmitGame = () => {
   };
 
   return (
-    <>
-      <div style={{ marginTop: "4dvh" }}>
-        <Link to={"/"} className="backButton">
-          Home
-        </Link>
-        <div className="inputSection">
-          {!results ? (
-            <form onSubmit={submitGame} className="gameForm">
-              <button
-                type="button"
-                className="submitButton"
-                onClick={() => pasteClipboardContent()}
-              >
-                Paste Game
-              </button>
-              <textarea
-                value={newGame}
-                onChange={handleGameChange}
-                className="gameInput"
-                id="paste-target"
-                placeholder={placeholder}
-              />
-              <button type="submit" className="submitButton">
-                Submit
-              </button>
-            </form>
-          ) : (
-            <div className="results">
-              <div>Completed: {results.score ? "Yes" : "No"}</div>
-              <div>Number of guesses: {results.tries}</div>
-              <div>Score: {results.score ? results.score : "0"}</div>
-              <Link to={"/leaderboard"} className="checkLeaderboard">
-                Check Leaderboard
-              </Link>
-            </div>
-          )}
-        </div>
+    <div style={{ marginTop: "4dvh" }}>
+      <Link to={"/"} className="backButton">
+        Home
+      </Link>
+      <div className="inputSection">
+        {!results ? (
+          <form onSubmit={submitGame} className="gameForm">
+            <button
+              type="button"
+              className="submitButton"
+              onClick={() => pasteClipboardContent()}
+            >
+              Paste Game
+            </button>
+            <textarea
+              value={newGame}
+              onChange={handleGameChange}
+              className="gameInput"
+              id="paste-target"
+              placeholder={placeholder}
+            />
+            <button type="submit" className="submitButton">
+              Submit
+            </button>
+          </form>
+        ) : (
+          <div className="results">
+            <div>Completed: {results.score ? "Yes" : "No"}</div>
+            <div>Number of guesses: {results.tries}</div>
+            <div>Score: {results.score ? results.score : "0"}</div>
+            <Link to={"/leaderboard"} className="checkLeaderboard">
+              Check Leaderboard
+            </Link>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

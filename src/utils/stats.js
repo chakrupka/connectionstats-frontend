@@ -1,6 +1,7 @@
 import { newDate } from "./formatDate.js";
 import { DateTime } from "luxon";
 import getPuzzleNum from "./getPuzzleNum.js";
+// import sampleGames from "./games_for_testing.js";
 
 const sortGames = (games) => {
   return games.sort((a, b) => a.number - b.number);
@@ -32,7 +33,8 @@ const areDayApart = (date1, date2) => {
   );
 };
 
-const areSequential = (game1, game2) => {
+const isAStreak = (game1, game2) => {
+  if (!game1.score || !game2.score) return false;
   return game1.number + 1 === game2.number || game1.number - 1 === game2.number;
 };
 
@@ -49,7 +51,12 @@ const longestStreak = (gamesArray) => {
   while (pos1 < games.length) {
     let start = pos1,
       end = pos1;
-    while (pos2 < games.length && areSequential(games[pos1], games[pos2])) {
+    if (!games[start].score) {
+      pos1++;
+      pos2++;
+      continue;
+    }
+    while (pos2 < games.length && isAStreak(games[pos1], games[pos2])) {
       pos1++;
       end = pos2++;
     }
@@ -65,7 +72,10 @@ const currentStreak = (gamesArray) => {
     return 0;
   }
   const games = sortGames(gamesArray);
-  if (games[games.length - 1].number !== getPuzzleNum()) {
+  if (
+    games[games.length - 1].number !== getPuzzleNum() ||
+    !games[games.length - 1].score
+  ) {
     return 0;
   }
 
@@ -75,7 +85,7 @@ const currentStreak = (gamesArray) => {
     end = pos1;
   while (
     pos2 <= games.length &&
-    areSequential(games[games.length - pos1], games[games.length - pos2])
+    isAStreak(games[games.length - pos1], games[games.length - pos2])
   ) {
     pos1++;
     end = pos2++;
@@ -100,5 +110,9 @@ const highestScore = (games) => {
   });
   return highGame;
 };
+
+// console.log(sortGames(sampleGames));
+// console.log(currentStreak(sampleGames));
+// console.log(longestStreak(sampleGames));
 
 export default { longestStreak, currentStreak, numSolved, highestScore };

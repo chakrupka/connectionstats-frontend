@@ -32,7 +32,7 @@ const CreateAccount = () => {
       setUsername("");
       setPassword("");
       setName("");
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log();
       if (err.response.data.error.includes("username")) {
@@ -46,7 +46,7 @@ const CreateAccount = () => {
 
   return (
     <div style={{ marginTop: "4dvh", height: "90dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <form onSubmit={handleCreateUser}>
@@ -75,7 +75,7 @@ const CreateAccount = () => {
           <div className="infoText">
             Username must be at least 3 characters long. Periods and underscores
             are allowed. Must not begin or end with a period. This will be{" "}
-            <b style={{ fontWeight: "bolder", color: "black" }}>public</b>.
+            <b style={{ fontWeight: "bold", color: "black" }}>public</b>.
           </div>
           <div style={{ marginTop: "3dvh", marginBottom: "1dvh" }}>Name</div>
           <input

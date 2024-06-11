@@ -1,10 +1,9 @@
 import { getTodaysGames, getAllGames } from "../../services/game_service.js";
-import { newDate, printDate } from "../../utils/formatDate.js";
+import dateUtils from "../../utils/date_utils.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
-import { getColorArray } from "../../utils/formatGame.js";
+import { getColorArray } from "../../utils/format_game.js";
 import { Link } from "react-router-dom";
-import getPuzzleNum from "../../utils/getPuzzleNum.js";
 
 const Leaderboard = () => {
   const [todaysGames, setTodaysGames] = useState(null);
@@ -14,8 +13,8 @@ const Leaderboard = () => {
   const [banner, setBanner] = useState("");
 
   useEffect(() => {
-    handleGetToday();
-    handleGetAll();
+    handleGetTodaysGames();
+    handleGetAllGames();
     // setGames([]);
     setBanner("Major updates to the leaderboard coming soon!");
     setTimeout(() => {
@@ -23,7 +22,7 @@ const Leaderboard = () => {
     }, 5000);
   }, []);
 
-  const handleGetToday = async () => {
+  const handleGetTodaysGames = async () => {
     const res = await getTodaysGames();
     if (res) {
       console.log("Fetched games");
@@ -37,7 +36,7 @@ const Leaderboard = () => {
     }
   };
 
-  const handleGetAll = async () => {
+  const handleGetAllGames = async () => {
     const res = await getAllGames();
     if (res) {
       console.log("Fetched games");
@@ -72,7 +71,7 @@ const Leaderboard = () => {
 
   return (
     <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <>
@@ -108,8 +107,8 @@ const Leaderboard = () => {
           </div>
         )}
         <div className="lbDate">
-          <div>{printDate(newDate())}</div>
-          <div>#{getPuzzleNum()}</div>
+          <div>{dateUtils.prettyStrDate(dateUtils.newDateEST())}</div>
+          <div>#{dateUtils.getTodayPuzzleNum()}</div>
         </div>
         <div className="lbPodiumContainer">
           <div className="lbPodiumSection">

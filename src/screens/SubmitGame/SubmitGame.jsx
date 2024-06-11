@@ -1,4 +1,4 @@
-import { prepGame } from "../../utils/formatGame.js";
+import { prepGame } from "../../utils/format_game.js";
 import { sendGame, setToken } from "../../services/game_service.js";
 import "./SubmitGame.css";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ const SubmitGame = () => {
       const user = JSON.parse(loggedUserJSON);
       setToken(user.token);
     } else {
-      navigate("/");
+      navigate("/home");
     }
   }, []);
 
@@ -64,7 +64,7 @@ const SubmitGame = () => {
 
   return (
     <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <div className="inputSection">

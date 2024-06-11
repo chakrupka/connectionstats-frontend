@@ -17,7 +17,7 @@ const Login = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
-      navigate("/");
+      navigate("/home");
     }
   }, []);
 
@@ -31,7 +31,7 @@ const Login = () => {
       setToken(user.token);
       setUsername("");
       setPassword("");
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setErrMessage("Incorrect credentials");
       setPassword("");
@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <div style={{ marginTop: "4dvh", height: "90dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <form onSubmit={handleLogin}>

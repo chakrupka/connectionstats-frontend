@@ -19,7 +19,7 @@ const Stats = ({ userProp }) => {
         setToken(parsedUser.token);
         console.log("Loaded user:", parsedUser);
       } else {
-        navigate("/");
+        navigate("/home");
       }
     } else {
       setUser(userProp);
@@ -52,7 +52,7 @@ const Stats = ({ userProp }) => {
 
   return (
     <div style={{ width: "99dvw", height: "95dvh", marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <div

@@ -1,36 +1,13 @@
-import { newDate } from "./formatDate.js";
-import { DateTime } from "luxon";
-import getPuzzleNum from "./getPuzzleNum.js";
+/*
+ * Various functions to interpret user game data
+ * Cha Krupka June 2024
+ */
+
+import dateUtils from "./date_utils.js";
 // import sampleGames from "./games_for_testing.js";
 
 const sortGames = (games) => {
   return games.sort((a, b) => a.number - b.number);
-};
-
-// Hopefully these are useful later...I am an idiot
-const sortDates = (games) => {
-  const todaysDate = newDate();
-  const dates = games.map((game) => dateToUnix(game.date));
-  dates.sort();
-  const sortedDates = dates.map((date) => unixToDate(date));
-  return sortedDates;
-};
-
-const dateToUnix = (dateString) => {
-  const dt = DateTime.fromISO(dateString);
-  return dt.toSeconds();
-};
-
-const unixToDate = (seconds) => {
-  const dt = DateTime.fromSeconds(seconds).setZone("America/New_York");
-  return dt.toFormat("yyyy-LL-dd");
-};
-
-const areDayApart = (date1, date2) => {
-  return (
-    dateToUnix(date1) + 86400 === dateToUnix(date2) ||
-    dateToUnix(date1) === dateToUnix(date2) + 86400
-  );
 };
 
 const isAStreak = (game1, game2) => {
@@ -74,7 +51,7 @@ const currentStreak = (gamesArray) => {
 
   const games = sortGames(gamesArray);
   if (
-    games[games.length - 1].number !== getPuzzleNum() ||
+    games[games.length - 1].number !== dateUtils.getTodayPuzzleNum() ||
     games[games.length - 1].score === null
   ) {
     return 0;

@@ -1,0 +1,32 @@
+.statsMain {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dayBox {
+  height: 10dvh;
+  width: 17dvh;
+  flex-shrink: 0;
+}
+
+.dayTag {
+  text-align: center;
+}
+
+.solveByDayMain {
+  display: flex;
+  flex-direction: row;
+  background: blue;
+  height: 20dvh;
+  overflow-y: hidden;
+  max-width: 100dvw;
+}
+
+.solveByDayMain::-webkit-scrollbar {
+  display: none;
+}

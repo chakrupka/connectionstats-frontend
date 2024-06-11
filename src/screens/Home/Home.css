@@ -16,7 +16,7 @@
   color: black;
 }
 
-.homeButton {
+.navButton {
   border: 1.5px solid lightgrey;
   width: 35dvh;
   height: 6dvh;
@@ -26,6 +26,6 @@
   transition: 0.2s;
 }
 
-.homeButton:hover {
+.navButton:hover {
   background: #f2f2f2;
 }

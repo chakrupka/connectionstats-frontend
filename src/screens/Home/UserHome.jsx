@@ -2,84 +2,34 @@ import { Link } from "react-router-dom";
 import dateUtils from "../../utils/date_utils.js";
 import "./Home.css";
 import { useEffect, useState } from "react";
-import { getUserGames, setToken } from "../../services/game_service.js";
+import { getUserGames } from "../../services/game_service.js";
 import stats from "../../utils/stats.js";
 import { useSelector } from "react-redux";
 
 const UserHome = () => {
   const user = useSelector((state) => state.user);
-  console.log(user);
-  const [games, setGames] = useState(null);
-  const [loadingGames, setLoadingGames] = useState(true);
-
-  useEffect(() => {
-    console.log("Loading games...");
-    setToken(user.token);
-    const loadGames = async () => {
-      const loadedGames = await getUserGames();
-      console.log("Loaded games:", loadedGames);
-      setGames(loadedGames);
-      setLoadingGames(false);
-    };
-    loadGames();
-  }, []);
+  const games = useSelector((state) => state.games);
 
   const StreakBanner = () => {
-    const [streak, setStreak] = useState("Checking streak...");
-    const [loading, setLoading] = useState(true);
+    const [streak, setStreak] = useState(null);
 
-    useEffect(() => {
-      if (!loadingGames) {
-        setTimeout(() => {
-          const currentStreak = stats.currentStreak(games);
-          setLoading(false);
-        }, 500);
-      }
-    }, []);
-
-    if (loading) {
-      return (
-        <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
-          Checking streak...
-        </div>
-      );
+    if (!streak) {
+      return <div className="streakBanner">You are not on a streak 😢</div>;
     }
 
-    if (!loadingGames) {
-      const streak = stats.currentStreak(games);
-      console.log(streak);
-      if (!streak) {
-        return (
-          <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
-            You are not on a streak 😢
-          </div>
-        );
-      }
-      return (
-        <div style={{ display: "flex" }}>
-          You are on a
-          <div
-            style={{
-              fontSize: "7dvh",
-              textAlign: "center",
-              marginTop: "-2.75dvh",
-              marginLeft: "2dvh",
-              marginRight: "2dvh",
-            }}
-          >
-            {streak}
-          </div>
-          day streak 🥳
-        </div>
-      );
-    }
+    return (
+      <div style={{ display: "flex" }}>
+        You are on a<div className="streakDay">{streak}</div>
+        day streak 🥳
+      </div>
+    );
   };
 
   return (
     <div
       style={{
-        height: "99dvh",
-        width: "99dvw",
+        height: "100dvh",
+        width: "100dvw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

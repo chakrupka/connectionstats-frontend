@@ -1,5 +1,5 @@
 import { prepGame } from "../../utils/format_game.js";
-import { sendGame, setToken } from "../../services/game_service.js";
+import { sendGame } from "../../services/game_service.js";
 import "./SubmitGame.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const SubmitGame = () => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
-      setToken(user.token);
+      // setToken(user.token);
     } else {
       navigate("/home");
     }

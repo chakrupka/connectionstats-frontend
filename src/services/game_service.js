@@ -6,16 +6,10 @@
 import axios from "axios";
 const url = `${import.meta.env.VITE_BACKEND_URL}/api/games`;
 
-let token = null;
-
-export const setToken = (newToken) => {
-  token = `Bearer ${newToken}`;
-};
-
-export const sendGame = async (game) => {
+export const sendGame = async (game, token) => {
   try {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     const res = await axios.post(`${url}/game`, game, config);
@@ -50,10 +44,10 @@ export const getAllGames = async () => {
   }
 };
 
-export const getUserGames = async () => {
+export const getUserGames = async (token) => {
   try {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     const res = await axios.get(`${url}/user`, config);
@@ -65,7 +59,6 @@ export const getUserGames = async () => {
 };
 
 export default {
-  setToken,
   sendGame,
   getTodaysGames,
   getAllGames,

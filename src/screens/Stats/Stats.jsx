@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getUserGames, setToken } from "../../services/game_service";
+import { getUserGames } from "../../services/game_service";
 import { Link } from "react-router-dom";
 import stats from "../../utils/stats";
 
@@ -16,14 +16,14 @@ const Stats = ({ userProp }) => {
       if (loggedUserJSON) {
         const parsedUser = JSON.parse(loggedUserJSON);
         setUser(parsedUser);
-        setToken(parsedUser.token);
+        // setToken(parsedUser.token);
         console.log("Loaded user:", parsedUser);
       } else {
         navigate("/home");
       }
     } else {
       setUser(userProp);
-      setToken(userProp.token);
+      // setToken(userProp.token);
     }
   }, []);
 

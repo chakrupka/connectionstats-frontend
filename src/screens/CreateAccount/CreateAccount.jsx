@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../services/game_service.js";
 import { Link } from "react-router-dom";
 import createUser from "../../services/newuser_service.js";
 import "../Login/Login.css";
@@ -28,7 +27,7 @@ const CreateAccount = () => {
       const user = await login({ username, password });
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
 
-      setToken(user.token);
+      // setToken(user.token);
       setUsername("");
       setPassword("");
       setName("");

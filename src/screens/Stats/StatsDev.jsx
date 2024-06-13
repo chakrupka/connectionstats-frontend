@@ -1,8 +1,3 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { getUserGames, setToken } from "../../services/game_service";
-import { Link } from "react-router-dom";
-import stats from "../../utils/stats";
 import sampleGames from "../../utils/games_for_testing";
 import "./Stats.css";
 

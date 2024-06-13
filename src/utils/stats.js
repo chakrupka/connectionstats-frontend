@@ -89,6 +89,11 @@ const highestScore = (games) => {
   return highGame;
 };
 
+/* Ideas
+ * - Number of perfect games
+ * - % of games in which [color] was solved first (for each color)
+ */
+
 // console.log(sortGames(sampleGames));
 // console.log(currentStreak(sampleGames));
 // console.log(longestStreak(sampleGames));

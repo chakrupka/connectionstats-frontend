@@ -29,3 +29,13 @@
 .navButton:hover {
   background: #f2f2f2;
 }
+
+.streakBanner {
+  margin: -2.5dvh 0 1dvh 0;
+}
+
+.streakDay {
+  font-size: 7dvh;
+  text-align: center;
+  margin: -2.75dvh 2dvh 0 2dvh;
+}

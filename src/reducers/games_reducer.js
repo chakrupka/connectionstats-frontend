@@ -17,7 +17,7 @@ export const addGames = (games) => {
   const payload = Array.isArray(games) ? games : [games];
 
   return {
-    type: "ADD_ONE",
+    type: "ADD_GAMES",
     payload,
   };
 };

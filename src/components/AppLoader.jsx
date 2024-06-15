@@ -3,10 +3,8 @@
  * Cha Krupka, June 2024
  */
 
-import { useSelector } from "react-redux";
 import useLoadUser from "../hooks/useLoadUser.js";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 const AppLoader = () => {
   useLoadUser();

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import createUser from "../../services/newuser_service.js";
 import "../Login/Login.css";
 import login from "../../services/login_service.js";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../reducers/user_reducer.js";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +14,7 @@ const CreateAccount = () => {
   const [errMessage, setErrMessage] = useState(null);
   const [errCount, setErrCount] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleBlur = () => {
     if (name.trim() !== "") {
@@ -23,17 +26,11 @@ const CreateAccount = () => {
     event.preventDefault();
     try {
       const newUser = await createUser({ username, password, name });
-      console.log(newUser);
       const user = await login({ username, password });
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
-
-      // setToken(user.token);
-      setUsername("");
-      setPassword("");
-      setName("");
+      dispatch(loginUser(user));
       navigate("/home");
     } catch (err) {
-      console.log();
       if (err.response.data.error.includes("username")) {
         setErrMessage("Username already exists");
       } else {

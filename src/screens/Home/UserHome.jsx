@@ -2,27 +2,25 @@ import { Link } from "react-router-dom";
 import dateUtils from "../../utils/date_utils.js";
 import "./Home.css";
 import { useEffect, useState } from "react";
-import { getUserGames } from "../../services/game_service.js";
-import stats from "../../utils/stats.js";
 import { useSelector } from "react-redux";
 
 const UserHome = () => {
   const user = useSelector((state) => state.user);
-  const games = useSelector((state) => state.games);
+  const stats = useSelector((state) => state.stats);
 
   const StreakBanner = () => {
-    const [streak, setStreak] = useState(null);
-
-    if (!streak) {
+    if (stats == null || stats.currentStreak == null) {
+      return <div className="streakBanner">Checking streak...</div>;
+    } else if (stats.currentStreak == 0) {
       return <div className="streakBanner">You are not on a streak 😢</div>;
+    } else {
+      return (
+        <div style={{ display: "flex" }}>
+          You are on a<div className="streakDay">{streak}</div>
+          day streak 🥳
+        </div>
+      );
     }
-
-    return (
-      <div style={{ display: "flex" }}>
-        You are on a<div className="streakDay">{streak}</div>
-        day streak 🥳
-      </div>
-    );
   };
 
   return (

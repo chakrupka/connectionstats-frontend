@@ -1,51 +1,19 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { getUserGames } from "../../services/game_service";
 import { Link } from "react-router-dom";
-import stats from "../../utils/stats";
+import { useSelector } from "react-redux";
 
 const Stats = ({ userProp }) => {
-  const [games, setGames] = useState(null);
-  const [user, setUser] = useState(null);
-  const [loadingGames, setLoadingGames] = useState(true);
+  const user = useSelector((state) => state.user);
+  const games = useSelector((state) => state.games);
+  const stats = useSelector((state) => state.stats);
 
-  useEffect(() => {
-    console.log("Loading user...");
-    if (!userProp) {
-      const loggedUserJSON = window.localStorage.getItem("loggedUser");
-      if (loggedUserJSON) {
-        const parsedUser = JSON.parse(loggedUserJSON);
-        setUser(parsedUser);
-        // setToken(parsedUser.token);
-        console.log("Loaded user:", parsedUser);
-      } else {
-        navigate("/home");
-      }
-    } else {
-      setUser(userProp);
-      // setToken(userProp.token);
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("Loading games...");
-    const loadGames = async () => {
-      const loadedGames = await getUserGames();
-      console.log("Loaded games:", loadedGames);
-      setGames(loadedGames);
-      setLoadingGames(false);
-    };
-    loadGames();
-  }, []);
-
-  const Stats = () => (
+  const StatTable = () => (
     <div style={{ marginTop: "5dvh", fontSize: "5dvh" }}>
-      <div>Current Streak: {stats.currentStreak(games)}</div>
-      <div>Longest Streak: {stats.longestStreak(games)}</div>
-      <div>Games solved: {stats.numSolved(games)}</div>
+      <div>Current Streak: {stats.currentStreak}</div>
+      <div>Longest Streak: {stats.longestStreak}</div>
+      <div>Games Attempted: {stats.totalGames}</div>
+      <div>Games Solved: {stats.solvedGames}</div>
       <div>
-        Solve rate: {((stats.numSolved(games) * 100) / games.length).toFixed(0)}
-        %
+        Solve Rate: {stats.solvePercent != NaN ? stats.solvePercent : 0}%
       </div>
     </div>
   );
@@ -70,7 +38,7 @@ const Stats = ({ userProp }) => {
         }}
       >
         <div style={{ fontSize: "6dvh" }}>My Stats</div>
-        <div style={{ width: "50dvh" }}>{!loadingGames && <Stats />}</div>
+        <div style={{ width: "50dvh" }}>{games && <StatTable />}</div>
         <div
           style={{
             fontSize: "2dvh",

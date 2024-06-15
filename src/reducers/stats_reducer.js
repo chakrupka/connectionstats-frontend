@@ -18,12 +18,12 @@ const statsReducer = (state = {}, action) => {
     case "GAMES_TOTAL":
       return {
         ...state,
-        gamesTotal: action.payload,
+        totalGames: action.payload,
       };
     case "GAMES_SOLVED":
       return {
         ...state,
-        gamesSolved: action.payload,
+        solvedGames: action.payload,
       };
     case "SOLVED_PERCENT":
       return {

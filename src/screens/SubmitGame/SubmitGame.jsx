@@ -32,7 +32,6 @@ const SubmitGame = () => {
 
   const handleSendGame = async (game) => {
     const res = await sendGame(game, user.token);
-    console.log(user.token);
     if (res) {
       console.log("Game sent succesfully", res);
       setResults(res);

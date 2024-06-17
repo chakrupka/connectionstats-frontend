@@ -13,7 +13,7 @@ const Stats = ({ userProp }) => {
       <div>Games Attempted: {stats.totalGames}</div>
       <div>Games Solved: {stats.solvedGames}</div>
       <div>
-        Solve Rate: {stats.solvePercent != NaN ? stats.solvePercent : 0}%
+        Solve Rate: {!isNaN(stats.solvePercent) ? stats.solvePercent : 0}%
       </div>
     </div>
   );

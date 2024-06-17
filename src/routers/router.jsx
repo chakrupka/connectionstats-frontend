@@ -3,7 +3,7 @@
  * Cha Krupka, June 2024
  */
 
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../screens/Error/error-page";
 import SubmitGame from "../screens/SubmitGame/SubmitGame";
 import Leaderboard from "../screens/Leaderboard/Leaderboard";
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLoader />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/home" />,
+      },
       {
         path: "home",
         element: <App />,

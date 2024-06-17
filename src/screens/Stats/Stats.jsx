@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const Stats = ({ userProp }) => {
   const user = useSelector((state) => state.user);
-  const games = useSelector((state) => state.games);
+  const userGames = useSelector((state) => state.userGames);
   const stats = useSelector((state) => state.stats);
 
   const StatTable = () => (
@@ -27,9 +27,7 @@ const Stats = ({ userProp }) => {
         style={{
           display: "flex",
           flexDirection: "column",
-          marginLeft: "8%",
-          width: "84%",
-          height: "100%",
+          height: "100dvh",
           justifyContent: "center",
           alignItems: "center",
           marginTop: "-10dvh",
@@ -38,7 +36,7 @@ const Stats = ({ userProp }) => {
         }}
       >
         <div style={{ fontSize: "6dvh" }}>My Stats</div>
-        <div style={{ width: "50dvh" }}>{games && <StatTable />}</div>
+        <div style={{ width: "50dvh" }}>{stats && <StatTable />}</div>
         <div
           style={{
             fontSize: "2dvh",

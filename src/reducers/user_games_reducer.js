@@ -3,7 +3,7 @@
  * Cha Krupka, June 2024
  */
 
-const gamesReducer = (state = [], action) => {
+const userGamesReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_GAMES":
       return [...state, ...action.payload];
@@ -12,7 +12,7 @@ const gamesReducer = (state = [], action) => {
   }
 };
 
-export const addGames = (games) => {
+export const addUserGames = (games) => {
   // check if one game (just an object) or multiple (already an array)
   const payload = Array.isArray(games) ? games : [games];
 
@@ -22,4 +22,4 @@ export const addGames = (games) => {
   };
 };
 
-export default gamesReducer;
+export default userGamesReducer;

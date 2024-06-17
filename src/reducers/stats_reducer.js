@@ -31,7 +31,13 @@ const statsReducer = (state = {}, action) => {
         solvePercent: action.payload,
       };
     case "UPDATE_ALL":
-      return action.payload;
+      return {
+        currentStreak: action.payload.currentStreak,
+        longestStreak: action.payload.longestStreak,
+        totalGames: action.payload.totalGames,
+        solvedGames: action.payload.solvedGames,
+        solvePercent: action.payload.solvePercent,
+      };
     default:
       return state;
   }

@@ -1,11 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../Login/Login.css";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../reducers/user_reducer";
 
 const Settings = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogOut = () => {
     window.localStorage.clear();
+    dispatch(logoutUser());
     navigate("/home");
   };
 

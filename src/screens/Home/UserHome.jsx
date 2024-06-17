@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import dateUtils from "../../utils/date_utils.js";
 import "./Home.css";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const UserHome = () => {
@@ -9,14 +8,14 @@ const UserHome = () => {
   const stats = useSelector((state) => state.stats);
 
   const StreakBanner = () => {
-    if (stats == null || stats.currentStreak == null) {
+    if (!stats || Object.keys(stats).length === 0) {
       return <div className="streakBanner">Checking streak...</div>;
-    } else if (stats.currentStreak == 0) {
+    } else if (stats.currentStreak === 0 || stats.currentStreak == null) {
       return <div className="streakBanner">You are not on a streak 😢</div>;
     } else {
       return (
         <div style={{ display: "flex" }}>
-          You are on a<div className="streakDay">{streak}</div>
+          You are on a<div className="streakDay">{stats.currentStreak}</div>
           day streak 🥳
         </div>
       );

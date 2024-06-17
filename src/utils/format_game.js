@@ -1,6 +1,7 @@
 /*
  * Various methods for parsing and formatting game information
  * Cha Krupka, Spring 2024
+ * Maybe move to backend?
  */
 
 const colorToChar = (input) => {

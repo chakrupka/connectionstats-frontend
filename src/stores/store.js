@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gamesReducer from "../reducers/games_reducer";
+import userGamesReducer from "../reducers/user_games_reducer";
+import topGamesReducer from "../reducers/top_games_reducer";
 import userReducer from "../reducers/user_reducer";
 import statsReducer from "../reducers/stats_reducer";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    games: gamesReducer,
+    userGames: userGamesReducer,
+    topGames: topGamesReducer,
     stats: statsReducer,
   },
 });

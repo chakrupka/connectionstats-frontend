@@ -20,9 +20,9 @@ export const sendGame = async (game, token) => {
   }
 };
 
-export const getTodaysGames = async () => {
+export const getTopGamesToday = async () => {
   try {
-    const res = await axios.get(`${url}/today`);
+    const res = await axios.get(`${url}/top/today`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -30,13 +30,9 @@ export const getTodaysGames = async () => {
   }
 };
 
-export const getAllGames = async () => {
+export const getTopGamesAll = async () => {
   try {
-    // const config = {
-    //   headers: { Authorization: token },
-    // };
-    // const res = await axios.get(url, config);
-    const res = await axios.get(url);
+    const res = await axios.get(`${url}/top/all`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -60,7 +56,7 @@ export const getUserGames = async (token) => {
 
 export default {
   sendGame,
-  getTodaysGames,
-  getAllGames,
+  getTopGamesToday,
+  getTopGamesAll,
   getUserGames,
 };

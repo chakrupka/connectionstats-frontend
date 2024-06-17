@@ -3,11 +3,11 @@
  * Cha Krupka, June 2024
  */
 
-import useLoadUser from "../hooks/useLoadUser.js";
+import useLoadUserData from "../hooks/useLoadUserData.jsx";
 import { Outlet } from "react-router-dom";
 
 const AppLoader = () => {
-  useLoadUser();
+  useLoadUserData();
   return <Outlet />;
 };
 

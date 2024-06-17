@@ -1,21 +1,28 @@
-import { getTodaysGames, getAllGames } from "../../services/game_service.js";
+import {
+  getTopGamesToday,
+  getTopGamesAll,
+} from "../../services/game_service.js";
 import dateUtils from "../../utils/date_utils.js";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";
 import { getColorArray } from "../../utils/format_game.js";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addTopAllTimeGames,
+  addTopTodayGames,
+} from "../../reducers/top_games_reducer.js";
 
 const Leaderboard = () => {
-  const [todaysGames, setTodaysGames] = useState(null);
-  const [allGames, setAllGames] = useState(null);
   const [showGamePopup, setShowGamePopup] = useState(false);
   const [popupGame, setPopupGame] = useState(null);
   const [banner, setBanner] = useState("");
+  const topGames = useSelector((state) => state.topGames);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     handleGetTodaysGames();
     handleGetAllGames();
-    // setGames([]);
     setBanner("Major updates to the leaderboard coming soon!");
     setTimeout(() => {
       setBanner("");
@@ -23,30 +30,22 @@ const Leaderboard = () => {
   }, []);
 
   const handleGetTodaysGames = async () => {
-    const res = await getTodaysGames();
+    const res = await getTopGamesToday();
     if (res) {
-      console.log("Fetched games");
-      setTodaysGames(
-        res.sort((a, b) =>
-          b.score - a.score === 0 ? a.tries - b.tries : b.score - a.score
-        )
-      );
+      dispatch(addTopTodayGames(res));
+      // setTopToday(res);
     } else {
-      console.log("Failed to load games");
+      console.log("Failed to load top games today");
     }
   };
 
   const handleGetAllGames = async () => {
-    const res = await getAllGames();
+    const res = await getTopGamesAll();
     if (res) {
-      console.log("Fetched games");
-      setAllGames(
-        res.sort((a, b) =>
-          b.score - a.score === 0 ? a.tries - b.tries : b.score - a.score
-        )
-      );
+      dispatch(addTopAllTimeGames(res));
+      // setTopAll(res);
     } else {
-      console.log("Failed to load games");
+      console.log("Failed to load top games all time)");
     }
   };
 
@@ -56,7 +55,6 @@ const Leaderboard = () => {
   };
 
   const handleShowPopup = (info) => {
-    console.log("Show popup");
     setPopupGame(info);
     setShowGamePopup(true);
     document.addEventListener("click", handleClosePopup);
@@ -64,7 +62,6 @@ const Leaderboard = () => {
 
   const handleClosePopup = () => {
     document.removeEventListener("click", handleClosePopup);
-    console.log("Close popup");
     setShowGamePopup(false);
     setPopupGame(null);
   };
@@ -91,21 +88,7 @@ const Leaderboard = () => {
         )}
       </>
       <div className="lbMain">
-        {banner !== "" && (
-          <div
-            style={{
-              marginTop: "2dvh",
-              marginBottom: "-2dvh",
-              border: "1px solid lightgrey",
-              borderRadius: "5px",
-              width: "52dvh",
-              textAlign: "center",
-              background: "rgb(255, 240, 240)",
-            }}
-          >
-            {banner}
-          </div>
-        )}
+        {banner !== "" && <div className="lbMessageBanner">{banner}</div>}
         <div className="lbDate">
           <div>{dateUtils.prettyStrDate(dateUtils.newDateEST())}</div>
           <div>#{dateUtils.getTodayPuzzleNum()}</div>
@@ -113,9 +96,9 @@ const Leaderboard = () => {
         <div className="lbPodiumContainer">
           <div className="lbPodiumSection">
             <div className="lbPodiumName">
-              {todaysGames
-                ? todaysGames[1]
-                  ? todaysGames[1].user.username
+              {topGames.topToday
+                ? topGames.topToday[1]
+                  ? topGames.topToday[1].user.username
                   : ""
                 : "Loading..."}
             </div>
@@ -123,19 +106,23 @@ const Leaderboard = () => {
           </div>
           <div className="lbPodiumSection">
             <div className="lbPodiumName">
-              {todaysGames
-                ? todaysGames[0]
-                  ? todaysGames[0].user.username
-                  : ""
-                : "Loading..."}
+              {topGames.topToday ? (
+                topGames.topToday[0] ? (
+                  topGames.topToday[0].user.username
+                ) : (
+                  <span>&nbsp;</span>
+                )
+              ) : (
+                "Loading..."
+              )}
             </div>
             <div className="lbPodium first">1</div>
           </div>
           <div className="lbPodiumSection">
             <div className="lbPodiumName">
-              {todaysGames
-                ? todaysGames[2]
-                  ? todaysGames[2].user.username
+              {topGames.topToday
+                ? topGames.topToday[2]
+                  ? topGames.topToday[2].user.username
                   : ""
                 : "Loading..."}
             </div>
@@ -151,15 +138,15 @@ const Leaderboard = () => {
         </div>
         <div className="lbLine"></div>
         <div className="lbList">
-          {todaysGames ? (
+          {topGames.topToday ? (
             <>
               <div className="lbListCol rank">
-                {todaysGames.map((game, index) => (
+                {topGames.topToday.map((game, index) => (
                   <div key={index}>{index + 1}.</div>
                 ))}
               </div>
               <div className="lbListCol name">
-                {todaysGames.map((game, index) => (
+                {topGames.topToday.map((game, index) => (
                   <div
                     key={index}
                     onClick={(event) => handleNameClick(game, event)}
@@ -169,12 +156,12 @@ const Leaderboard = () => {
                 ))}
               </div>
               <div className="lbListCol score">
-                {todaysGames.map((game, index) => (
+                {topGames.topToday.map((game, index) => (
                   <div key={index}>{game.score ? game.score : "✗"}</div>
                 ))}
               </div>
               <div className="lbListCol tries">
-                {todaysGames.map((game, index) => (
+                {topGames.topToday.map((game, index) => (
                   <div key={index}>{-4 + game.tries}</div>
                 ))}
               </div>
@@ -192,15 +179,15 @@ const Leaderboard = () => {
         </div>
         <div className="lbLine"></div>
         <div className="lbList">
-          {allGames ? (
+          {topGames.topAllTime ? (
             <>
               <div className="lbListCol rank">
-                {allGames.slice(0, 10).map((game, index) => (
+                {topGames.topAllTime.slice(0, 10).map((game, index) => (
                   <div key={index}>{index + 1}.</div>
                 ))}
               </div>
               <div className="lbListCol name">
-                {allGames.slice(0, 10).map((game, index) => (
+                {topGames.topAllTime.slice(0, 10).map((game, index) => (
                   <div
                     key={index}
                     onClick={(event) => handleNameClick(game, event)}
@@ -210,12 +197,12 @@ const Leaderboard = () => {
                 ))}
               </div>
               <div className="lbListCol score">
-                {allGames.slice(0, 10).map((game, index) => (
+                {topGames.topAllTime.slice(0, 10).map((game, index) => (
                   <div key={index}>{game.score}</div>
                 ))}
               </div>
               <div className="lbListCol number">
-                {allGames.slice(0, 10).map((game, index) => (
+                {topGames.topAllTime.slice(0, 10).map((game, index) => (
                   <div key={index}>{game.number}</div>
                 ))}
               </div>

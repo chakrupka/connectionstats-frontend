@@ -12,7 +12,7 @@ import CreateAccount from "../screens/CreateAccount/CreateAccount";
 import Placeholder from "../screens/Placeholder/Placeholder";
 import Settings from "../screens/Settings/Settings";
 import Stats from "../screens/Stats/Stats";
-import StatsDev from "../screens/Stats/StatsDev";
+// import StatsDev from "../screens/Stats/StatsDev";
 import AppLoader from "../components/AppLoader";
 import App from "../App";
 

@@ -1,23 +1,14 @@
-import { prepGame } from "../../utils/formatGame.js";
-import { sendGame, setToken } from "../../services/game_service.js";
+import { prepGame } from "../../utils/format_game.js";
+import { sendGame } from "../../services/game_service.js";
 import "./SubmitGame.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SubmitGame = () => {
   const [newGame, setNewGame] = useState("");
   const [results, setResults] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedUser");
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setToken(user.token);
-    } else {
-      navigate("/");
-    }
-  }, []);
+  const user = useSelector((state) => state.user);
 
   const placeholder = `Instructions:
   1. Open NYTimes Games
@@ -31,23 +22,17 @@ const SubmitGame = () => {
 
   const handleGameChange = (event) => {
     setNewGame(event.target.value);
-    console.log(newGame);
-  };
-
-  const handleNameChange = (event) => {
-    setNewName(event.target.value);
-    console.log(newGame);
   };
 
   const submitGame = (event) => {
     event.preventDefault();
-    console.log(newGame);
     const preGame = prepGame(newGame);
     handleSendGame(preGame);
   };
 
   const handleSendGame = async (game) => {
-    const res = await sendGame(game);
+    const res = await sendGame(game, user.token);
+    console.log(user.token);
     if (res) {
       console.log("Game sent succesfully", res);
       setResults(res);
@@ -64,7 +49,7 @@ const SubmitGame = () => {
 
   return (
     <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <div className="inputSection">

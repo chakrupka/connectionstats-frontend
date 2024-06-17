@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import getPuzzleNum from "../../utils/getPuzzleNum";
+import dateUtils from "../../utils/date_utils.js";
 import "./Home.css";
 
 const GuestHome = () => {
@@ -49,7 +49,7 @@ const GuestHome = () => {
           marginLeft: "-1dvh",
         }}
       >
-        #{getPuzzleNum()}
+        #{dateUtils.getTodayPuzzleNum()}
       </a>
       <div
         style={{
@@ -62,13 +62,13 @@ const GuestHome = () => {
           gap: "3dvh",
         }}
       >
-        <Link className="homeButton" to={"/setup"}>
+        <Link className="navButton" to={"/setup"}>
           🐛 &nbsp;New User
         </Link>
-        <Link className="homeButton" to={"/login"}>
+        <Link className="navButton" to={"/login"}>
           🦋 &nbsp;Returning User
         </Link>
-        <Link className="homeButton" to={"leaderboard"}>
+        <Link className="navButton" to={"/leaderboard"}>
           📆 &nbsp;Leaderboard
         </Link>
       </div>

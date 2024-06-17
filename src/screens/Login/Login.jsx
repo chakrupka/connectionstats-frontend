@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../services/game_service.js";
 import { Link } from "react-router-dom";
 import { login } from "../../services/login_service.js";
 import "./Login.css";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../reducers/user_reducer.js";
+import { loadUserGames, loadUserStats } from "../../utils/redux_loaders.js";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState(null);
   const [errCount, setErrCount] = useState(0);
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedUser");
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-      navigate("/");
+    if (user) {
+      navigate("/home");
     }
-  }, []);
+  }, [user]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -27,11 +28,10 @@ const Login = () => {
     try {
       const user = await login({ username, password });
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
-
-      setToken(user.token);
-      setUsername("");
-      setPassword("");
-      navigate("/");
+      dispatch(loginUser(user));
+      loadUserStats(user.token, dispatch);
+      loadUserGames(user.token, dispatch);
+      navigate("/home");
     } catch (err) {
       setErrMessage("Incorrect credentials");
       setPassword("");
@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <div style={{ marginTop: "4dvh", height: "90dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <form onSubmit={handleLogin}>
@@ -63,7 +63,9 @@ const Login = () => {
             spellCheck="false"
             required
             value={username}
-            name="Username"
+            name="username"
+            autoComplete="on"
+            minLength={3}
             onChange={({ target }) => setUsername(target.value)}
             className="loginInput"
           />
@@ -71,12 +73,14 @@ const Login = () => {
             Password
           </div>
           <input
-            type="text"
+            type="password"
             autoCapitalize="off"
             spellCheck="false"
             required
             value={password}
-            name="Password"
+            name="password"
+            minLength={6}
+            autoComplete="on"
             onChange={({ target }) => setPassword(target.value)}
             className="loginInput"
           />

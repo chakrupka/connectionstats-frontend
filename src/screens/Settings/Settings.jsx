@@ -1,17 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../Login/Login.css";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../reducers/user_reducer";
 
 const Settings = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogOut = () => {
     window.localStorage.clear();
-    navigate("/");
+    dispatch(logoutUser());
+    navigate("/home");
   };
 
   return (
     <div style={{ width: "99dvw", height: "95dvh", marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <div

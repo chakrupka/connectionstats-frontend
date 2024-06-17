@@ -1,16 +1,15 @@
+/*
+ * Services related to sending and recieving game information
+ * Cha Krupka, Spring 2024
+ */
+
 import axios from "axios";
 const url = `${import.meta.env.VITE_BACKEND_URL}/api/games`;
 
-let token = null;
-
-export const setToken = (newToken) => {
-  token = `Bearer ${newToken}`;
-};
-
-export const sendGame = async (game) => {
+export const sendGame = async (game, token) => {
   try {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     const res = await axios.post(`${url}/game`, game, config);
@@ -21,9 +20,9 @@ export const sendGame = async (game) => {
   }
 };
 
-export const getTodaysGames = async () => {
+export const getTopGamesToday = async () => {
   try {
-    const res = await axios.get(`${url}/today`);
+    const res = await axios.get(`${url}/top/today`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -31,13 +30,9 @@ export const getTodaysGames = async () => {
   }
 };
 
-export const getAllGames = async () => {
+export const getTopGamesAll = async () => {
   try {
-    // const config = {
-    //   headers: { Authorization: token },
-    // };
-    // const res = await axios.get(url, config);
-    const res = await axios.get(url);
+    const res = await axios.get(`${url}/top/all`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -45,10 +40,10 @@ export const getAllGames = async () => {
   }
 };
 
-export const getUserGames = async () => {
+export const getUserGames = async (token) => {
   try {
     const config = {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     const res = await axios.get(`${url}/user`, config);
@@ -60,9 +55,8 @@ export const getUserGames = async () => {
 };
 
 export default {
-  setToken,
   sendGame,
-  getTodaysGames,
-  getAllGames,
+  getTopGamesToday,
+  getTopGamesAll,
   getUserGames,
 };

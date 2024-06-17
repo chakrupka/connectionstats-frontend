@@ -1,71 +1,21 @@
 import { Link } from "react-router-dom";
-import getPuzzleNum from "../../utils/getPuzzleNum";
+import dateUtils from "../../utils/date_utils.js";
 import "./Home.css";
-import { useEffect, useState } from "react";
-import { getUserGames, setToken } from "../../services/game_service";
-import stats from "../../utils/stats";
+import { useSelector } from "react-redux";
 
-const UserHome = ({ user }) => {
-  const [games, setGames] = useState(null);
-  const [loadingGames, setLoadingGames] = useState(true);
-
-  useEffect(() => {
-    console.log("Loading games...");
-    setToken(user.token);
-    const loadGames = async () => {
-      const loadedGames = await getUserGames();
-      console.log("Loaded games:", loadedGames);
-      setGames(loadedGames);
-      setLoadingGames(false);
-    };
-    loadGames();
-  }, []);
+const UserHome = () => {
+  const user = useSelector((state) => state.user);
+  const stats = useSelector((state) => state.stats);
 
   const StreakBanner = () => {
-    const [streak, setStreak] = useState("Checking streak...");
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-      if (!loadingGames) {
-        setTimeout(() => {
-          const currentStreak = stats.currentStreak(games);
-          setLoading(false);
-        }, 500);
-      }
-    }, []);
-
-    if (loading) {
-      return (
-        <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
-          Checking streak...
-        </div>
-      );
-    }
-
-    if (!loadingGames) {
-      const streak = stats.currentStreak(games);
-      console.log(streak);
-      if (!streak) {
-        return (
-          <div style={{ marginTop: "-2.5dvh", marginBottom: "1dvh" }}>
-            You are not on a streak 😢
-          </div>
-        );
-      }
+    if (!stats || Object.keys(stats).length === 0) {
+      return <div className="streakBanner">Checking streak...</div>;
+    } else if (stats.currentStreak === 0 || stats.currentStreak == null) {
+      return <div className="streakBanner">You are not on a streak 😢</div>;
+    } else {
       return (
         <div style={{ display: "flex" }}>
-          You are on a
-          <div
-            style={{
-              fontSize: "7dvh",
-              textAlign: "center",
-              marginTop: "-2.75dvh",
-              marginLeft: "2dvh",
-              marginRight: "2dvh",
-            }}
-          >
-            {streak}
-          </div>
+          You are on a<div className="streakDay">{stats.currentStreak}</div>
           day streak 🥳
         </div>
       );
@@ -75,8 +25,8 @@ const UserHome = ({ user }) => {
   return (
     <div
       style={{
-        height: "99dvh",
-        width: "99dvw",
+        height: "100dvh",
+        width: "100dvw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -89,7 +39,7 @@ const UserHome = ({ user }) => {
       <div
         style={{ fontSize: "4dvh", marginBottom: "4dvh", marginTop: "1dvh" }}
       >
-        Today's puzzle is #{getPuzzleNum()}
+        Today's puzzle is #{dateUtils.getTodayPuzzleNum()}
       </div>
       <div style={{ fontSize: "3dvh", marginBottom: "2dvh" }}>
         <StreakBanner />
@@ -105,16 +55,16 @@ const UserHome = ({ user }) => {
           gap: "3dvh",
         }}
       >
-        <Link className="homeButton" to={"submit"}>
+        <Link className="navButton" to={"/submit"}>
           📥 &nbsp;Submit Game
         </Link>
-        <Link className="homeButton" to={"leaderboard"}>
+        <Link className="navButton" to={"/leaderboard"}>
           📆 &nbsp;Leaderboard
         </Link>
-        <Link className="homeButton" to={"stats"}>
+        <Link className="navButton" to={"/stats"}>
           📊 &nbsp;View Stats
         </Link>
-        <Link className="homeButton" to={"settings"}>
+        <Link className="navButton" to={"/settings"}>
           ⚙️&nbsp;User Settings
         </Link>
       </div>

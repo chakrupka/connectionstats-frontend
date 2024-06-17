@@ -1,3 +1,9 @@
+/*
+ * Various methods for parsing and formatting game information
+ * Cha Krupka, Spring 2024
+ * Maybe move to backend?
+ */
+
 const colorToChar = (input) => {
   let sequence = input;
   const colorEmojis = ["🟨", "🟩", "🟦", "🟪"];
@@ -60,16 +66,3 @@ export const getColorArray = (game) => {
 };
 
 export default { prepGame, getColorArray };
-
-// const failInput = `Connections
-// Puzzle #282
-// 🟨🟨🟨🟨
-// 🟦🟦🟦🟦
-// 🟪🟪🟩🟩
-// 🟪🟩🟪🟩
-// 🟩🟪🟪🟩
-// 🟪🟪🟩🟩`;
-
-// const formatted = prepGame(failInput);
-// console.log(formatted);
-// console.log(getGameStr(formatted));

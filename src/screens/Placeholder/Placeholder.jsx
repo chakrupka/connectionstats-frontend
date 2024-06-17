@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const Placeholder = () => {
   return (
     <div style={{ width: "99dvw", height: "95dvh", marginTop: "4dvh" }}>
-      <Link to={"/"} className="backButton">
+      <Link to={"/home"} className="backButton">
         Home
       </Link>
       <div

@@ -1,3 +1,13 @@
+.lbMessageBanner {
+  margin-top: 2dvh;
+  margin-bottom: -2dvh;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 52dvh;
+  text-align: center;
+  background: rgb(255, 240, 240);
+}
+
 .lbPopupScreen {
   position: fixed;
   top: 0;

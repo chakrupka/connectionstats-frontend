@@ -14,18 +14,18 @@ const newDateEST = () => {
 // Input is a string of format "YYYY-MM-DD" (ex: "2024-11-19")
 const prettyStrDate = (dateStr) => {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const dateValues = dateStr.split("-");
   const month = months[parseInt(dateValues[1]) - 1];
@@ -64,20 +64,26 @@ const areDayApart = (date1, date2) => {
 };
 
 const getTodayPuzzleNum = () => {
-  const firstDate = DateTime.fromISO("2023-06-11").setZone("America/New_York");
+  const firstDate = DateTime.fromISO("2023-06-11T00:00:00", {
+    zone: "America/New_York",
+  });
   const todayDate = DateTime.now().setZone("America/New_York");
   return Math.floor(-firstDate.diff(todayDate, "day").toObject().days);
 };
 
 // Input is a string of format "YYYY-MM-DD" (ex: "2024-11-19")
 const dateToPuzzleNum = (dateStr) => {
-  const firstDate = DateTime.fromISO("2023-06-11").setZone("America/New_York");
+  const firstDate = DateTime.fromISO("2023-06-11T00:00:00", {
+    zone: "America/New_York",
+  });
   const puzzleDate = DateTime.fromISO(dateStr).setZone("America/New_York");
   return Math.floor(-firstDate.diff(puzzleDate, "day").toObject().days);
 };
 
 const puzzleNumToDate = (number) => {
-  const firstDate = DateTime.fromISO("2023-06-11").setZone("America/New_York");
+  const firstDate = DateTime.fromISO("2023-06-11T00:00:00", {
+    zone: "America/New_York",
+  });
   return firstDate.plus({ days: number }).toFormat("yyyy-LL-dd");
 };
 

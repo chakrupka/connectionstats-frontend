@@ -91,9 +91,10 @@ const Stats = () => {
   const GameView = ({ games }) => {
     return (
       <div className="gameViewMain">
-        <div className="gameBoxGhost"></div>
+        <div className="gameBoxGhostStart"></div>
         {games.length > 0 &&
           games.map((game, index) => <GameViewBox game={game} key={index} />)}
+        <div className="gameBoxGhostEnd">&nbsp;</div>
       </div>
     );
   };

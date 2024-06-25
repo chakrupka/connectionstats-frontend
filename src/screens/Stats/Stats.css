@@ -8,8 +8,12 @@
   overflow: hidden;
 }
 
-.gameBoxGhost {
+.gameBoxGhostStart {
   margin-right: 5dvh;
+}
+
+.gameBoxGhostEnd {
+  margin-left: 5dvh;
 }
 
 .gameBox {

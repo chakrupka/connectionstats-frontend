@@ -3,11 +3,13 @@ import { sendGame } from "../../services/game_service.js";
 import "./SubmitGame.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUserStats } from "../../utils/redux_loaders.js";
 
 const SubmitGame = () => {
   const [newGame, setNewGame] = useState("");
   const [results, setResults] = useState(null);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   const placeholder = `Instructions:
@@ -35,6 +37,7 @@ const SubmitGame = () => {
     if (res) {
       console.log("Game sent succesfully", res);
       setResults(res);
+      loadUserStats(user.token, dispatch);
     } else {
       console.log("Failed to send game");
     }

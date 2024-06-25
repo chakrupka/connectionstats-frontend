@@ -11,10 +11,7 @@ const UserHome = () => {
     console.log(stats.prevStreak);
     if (!stats || Object.keys(stats).length === 0) {
       return <div className="streakBanner">Checking streak...</div>;
-    } else if (
-      (stats.currentStreak === 0 && stats.prevStreak === 0) ||
-      stats.currentStreak == null
-    ) {
+    } else if (stats.currentStreak === 0 && stats.prevStreak === 0) {
       return <div className="streakBanner">You are not on a streak 😢</div>;
     } else if (stats.prevStreak > 0) {
       return (

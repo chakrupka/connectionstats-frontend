@@ -10,6 +10,11 @@ const statsReducer = (state = {}, action) => {
         ...state,
         currentStreak: action.payload,
       };
+    case "PREV_STREAK":
+      return {
+        ...state,
+        currentStreak: action.payload,
+      };
     case "LONGEST_STREAK":
       return {
         ...state,
@@ -33,6 +38,7 @@ const statsReducer = (state = {}, action) => {
     case "UPDATE_ALL":
       return {
         currentStreak: action.payload.currentStreak,
+        prevStreak: action.payload.prevStreak,
         longestStreak: action.payload.longestStreak,
         totalGames: action.payload.totalGames,
         solvedGames: action.payload.solvedGames,
@@ -53,6 +59,13 @@ export const updateAllStats = (stats) => {
 export const updateCurrStreak = (streak) => {
   return {
     type: "CURRENT_STREAK",
+    payload: streak,
+  };
+};
+
+export const updatePrevStreak = (streak) => {
+  return {
+    type: "PREV_STREAK",
     payload: streak,
   };
 };

@@ -8,10 +8,29 @@ const UserHome = () => {
   const stats = useSelector((state) => state.stats);
 
   const StreakBanner = () => {
+    console.log(stats.prevStreak);
     if (!stats || Object.keys(stats).length === 0) {
       return <div className="streakBanner">Checking streak...</div>;
-    } else if (stats.currentStreak === 0 || stats.currentStreak == null) {
+    } else if (
+      (stats.currentStreak === 0 && stats.prevStreak === 0) ||
+      stats.currentStreak == null
+    ) {
       return <div className="streakBanner">You are not on a streak 😢</div>;
+    } else if (stats.prevStreak > 0) {
+      return (
+        <div
+          className="streakBanner"
+          style={{
+            textAlign: "center",
+            width: "40dvh",
+            marginTop: "-2dvh",
+            marginBottom: "0.5dvh",
+          }}
+        >
+          You are on a <b>{stats.prevStreak}</b> day streak. See if you can
+          extend it!
+        </div>
+      );
     } else {
       return (
         <div style={{ display: "flex" }}>

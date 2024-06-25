@@ -1,32 +1,105 @@
 .statsMain {
   width: 100dvw;
   height: 100dvh;
+  margin-top: 8dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-.dayBox {
-  height: 10dvh;
-  width: 17dvh;
+.gameBoxGhost {
+  margin-right: 5dvh;
+}
+
+.gameBox {
+  margin: 3dvh 0 5dvh -1dvh;
+  height: 43dvh;
+  width: 25dvh;
   flex-shrink: 0;
-}
-
-.dayTag {
   text-align: center;
+  transition: opacity 0.5s;
+  border-radius: 20px;
 }
 
-.solveByDayMain {
+.gameBoxNumber {
+  font-size: 4dvh;
+}
+
+.gameBoxStat {
+  font-size: 3dvh;
+  margin: 0.5dvh 0 -1.5dvh 4.5dvh;
+  text-align: left;
+}
+
+.gameViewMain {
   display: flex;
   flex-direction: row;
-  background: blue;
-  height: 20dvh;
+  height: 50dvh;
   overflow-y: hidden;
-  max-width: 100dvw;
+  width: 50dvh;
+  max-width: 50dvh;
+  line-height: 102%;
+  font-size: 5dvh;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
 }
 
-.solveByDayMain::-webkit-scrollbar {
+.gameViewMain::-webkit-scrollbar {
   display: none;
+}
+
+.emoji {
+  height: 4dvh;
+  width: 4dvh;
+  margin-left: -0.06dvh;
+  overflow: hidden;
+}
+
+.tabBar {
+  display: flex;
+  margin-bottom: -0.4dvh;
+  justify-content: space-evenly;
+  width: 50dvh;
+  gap: 1dvh;
+}
+
+.statSectionTitle {
+  font-size: 3.5dvh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 25dvh;
+  height: 5dvh;
+  margin-bottom: 2dvh;
+  border: 3px solid transparent;
+}
+
+.selectedTab {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.3dvh;
+  text-underline-offset: 3px;
+}
+
+.statTable {
+  display: flex;
+  flex-direction: column;
+  font-size: 4dvh;
+  text-align: center;
+  width: 50dvh;
+  height: 50dvh;
+  border: 3px solid lightgrey;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 5dvh;
+}
+
+.wipText {
+  font-size: 2dvh;
+  width: 40dvh;
+  position: absolute;
+  bottom: 4dvh;
+  text-align: center;
 }

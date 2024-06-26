@@ -106,11 +106,8 @@ const Stats = () => {
   };
 
   const getStreak = () => {
-    if (stats.prevStreak > 0) {
-      if (stats.currentStreak > 0) {
-        return stats.currentStreak;
-      }
-      return stats.prevStreak;
+    if (stats.prevStreak || stats.currentStreak) {
+      return stats.currentStreak ? stats.currentStreak : stats.prevStreak;
     }
     return 0;
   };

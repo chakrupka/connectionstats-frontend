@@ -1,7 +1,7 @@
 .statsMain {
   width: 100dvw;
-  height: 100dvh;
-  margin-top: 8dvh;
+  height: 80dvh;
+  margin-top: 5dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,21 +9,19 @@
 }
 
 .gameBoxGhostStart {
-  margin-right: 5dvh;
+  margin-right: 8dvh;
 }
 
 .gameBoxGhostEnd {
-  margin-left: 5dvh;
+  margin-left: 11dvh;
 }
 
 .gameBox {
-  margin: 3dvh 0 5dvh -1dvh;
-  height: 43dvh;
-  width: 25dvh;
+  margin: 3dvh 0 0dvh 5dvh;
+  width: 23dvh;
   flex-shrink: 0;
   text-align: center;
   transition: opacity 0.5s;
-  border-radius: 20px;
 }
 
 .gameBoxNumber {
@@ -32,14 +30,14 @@
 
 .gameBoxStat {
   font-size: 3dvh;
-  margin: 0.5dvh 0 -1.5dvh 4.5dvh;
-  text-align: left;
+  margin: 0.5dvh 0 -1.5dvh 0dvh;
+  text-align: center;
 }
 
 .gameViewMain {
   display: flex;
   flex-direction: row;
-  height: 50dvh;
+  height: 55dvh;
   overflow-y: hidden;
   width: 50dvh;
   max-width: 50dvh;
@@ -53,12 +51,12 @@
   display: none;
 }
 
-.emoji {
+/* .emoji {
   height: 4dvh;
   width: 4dvh;
   margin-left: -0.06dvh;
   overflow: hidden;
-}
+} */
 
 .tabBar {
   display: flex;

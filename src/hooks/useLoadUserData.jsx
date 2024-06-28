@@ -33,7 +33,7 @@ const useLoadUserData = () => {
         }
       }
     }
-  }, []);
+  }, [user, dispatch, navigate]);
 };
 
 export default useLoadUserData;

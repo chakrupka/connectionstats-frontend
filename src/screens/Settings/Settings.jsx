@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Login/Login.css";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../reducers/user_reducer";
+import Banner from "../../components/Banner";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -14,10 +15,8 @@ const Settings = () => {
   };
 
   return (
-    <div style={{ width: "99dvw", height: "95dvh", marginTop: "4dvh" }}>
-      <Link to={"/home"} className="backButton">
-        Home
-      </Link>
+    <div style={{ width: "99dvw", height: "95dvh", marginTop: "-5dvh" }}>
+      <Banner />
       <div
         style={{
           display: "flex",

@@ -12,6 +12,7 @@ import {
   addTopAllTimeGames,
   addTopTodayGames,
 } from "../../reducers/top_games_reducer.js";
+import Banner from "../../components/Banner.jsx";
 
 const Leaderboard = () => {
   const [showGamePopup, setShowGamePopup] = useState(false);
@@ -67,10 +68,8 @@ const Leaderboard = () => {
   };
 
   return (
-    <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/home"} className="backButton">
-        Home
-      </Link>
+    <div>
+      <Banner />
       <>
         {showGamePopup && (
           <div className="lbPopupScreen">
@@ -88,7 +87,7 @@ const Leaderboard = () => {
         )}
       </>
       <div className="lbMain">
-        {banner !== "" && <div className="lbMessageBanner">{banner}</div>}
+        {/* {banner !== "" && <div className="lbMessageBanner">{banner}</div>} */}
         <div className="lbDate">
           <div>{dateUtils.prettyStrDate(dateUtils.newDateEST())}</div>
           <div>#{dateUtils.getTodayPuzzleNum()}</div>

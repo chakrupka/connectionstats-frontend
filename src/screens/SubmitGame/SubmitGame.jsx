@@ -1,10 +1,11 @@
 import { prepGame } from "../../utils/format_game.js";
 import { sendGame } from "../../services/game_service.js";
 import "./SubmitGame.css";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserStats } from "../../utils/redux_loaders.js";
+import Banner from "../../components/Banner.jsx";
 
 const SubmitGame = () => {
   const [newGame, setNewGame] = useState("");
@@ -37,7 +38,7 @@ const SubmitGame = () => {
     if (res) {
       console.log("Game sent succesfully", res);
       setResults(res);
-      loadUserStats(user.token, dispatch);
+      await loadUserStats(user.token, dispatch);
     } else {
       console.log("Failed to send game");
     }
@@ -51,9 +52,7 @@ const SubmitGame = () => {
 
   return (
     <div style={{ marginTop: "4dvh" }}>
-      <Link to={"/home"} className="backButton">
-        Home
-      </Link>
+      <Banner />
       <div className="inputSection">
         {!results ? (
           <form onSubmit={submitGame} className="gameForm">

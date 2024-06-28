@@ -23,3 +23,136 @@ body {
 a {
   color: black;
 }
+
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  border-bottom: 2px solid black;
+  transition: height 0.5s ease-in-out;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bannerText {
+  position: fixed;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  z-index: 1;
+}
+
+.overlay.active {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+.bannerMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.bannerMenuItem {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.7s ease-in-out;
+}
+
+.bannerMenu.active .bannerMenuItem {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.bannerMenu.inactive .bannerMenuItem {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+@media (max-width: 450px) {
+  .banner {
+    width: 100%;
+    height: 45px;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .banner.open {
+    height: 37%;
+  }
+
+  .bannerText {
+    top: 0.8dvw;
+    width: 100%;
+    font-size: 1.7rem;
+  }
+
+  .bannerMenu {
+    margin-top: 11%;
+    gap: 2dvw;
+    width: 95%;
+  }
+
+  .bannerMenu.active {
+    max-height: 90%;
+  }
+
+  .bannerMenuItem {
+    font-size: 1.5rem;
+    text-decoration-line: none;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 1px;
+  }
+}
+
+@media (min-width: 451px) {
+  .banner {
+    width: 100%;
+    height: 6.5%;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .banner.open {
+    height: 31%;
+  }
+
+  .bannerText {
+    top: 0.8dvw;
+    width: 100%;
+    font-size: 1.7rem;
+  }
+
+  .bannerMenu {
+    margin-top: 6dvh;
+    gap: 1.5dvh;
+    width: 95%;
+  }
+
+  .bannerMenu.active {
+    max-height: 90%;
+  }
+
+  .bannerMenuItem {
+    font-size: 1.5rem;
+    text-decoration-line: none;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 1px;
+  }
+}

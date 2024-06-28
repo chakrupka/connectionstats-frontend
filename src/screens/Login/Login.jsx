@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div style={{ marginTop: "4dvh", height: "90dvh" }}>
       <Link to={"/home"} className="backButton">
-        Home
+        Back
       </Link>
       <form onSubmit={handleLogin}>
         <div

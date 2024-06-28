@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
+import Banner from "../../components/Banner";
 const NoStats = () => {
   return (
     <div style={{ width: "99dvw", height: "95dvh", marginTop: "4dvh" }}>
-      <Link to={"/home"} className="backButton">
-        Home
-      </Link>
+      <Banner />
       <div
         style={{
           display: "flex",

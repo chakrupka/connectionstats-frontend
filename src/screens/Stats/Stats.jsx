@@ -9,6 +9,7 @@ import dateUtils from "../../utils/date_utils.js";
 import { Link } from "react-router-dom";
 import NoStats from "./NoStats.jsx";
 import formatGame from "../../utils/format_game.js";
+import Banner from "../../components/Banner.jsx";
 
 /*
  * REVIEW OBSERVER CODE
@@ -129,10 +130,8 @@ const Stats = () => {
   }
 
   return (
-    <div style={{ marginTop: "8dvh" }}>
-      <Link to={"/home"} className="backButton">
-        Home
-      </Link>
+    <div>
+      <Banner />
       <div className="statsMain">
         <div className="tabBar">
           {" "}

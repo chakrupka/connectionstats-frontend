@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [hovering, setHovering] = useState(false);
+
+  useEffect(() => {
+    if (hovering) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [hovering]);
 
   const handleHover = () => {
     setHovering(true);
@@ -19,10 +31,7 @@ const Banner = () => {
         onMouseOver={handleHover}
         onMouseOut={handleLeave}
       >
-        <div className="bannerText">
-          {/* <span className="bannerText homeIcon">🟪🟦🟩🟨</span> */}
-          Connections Stats
-        </div>
+        <div className="bannerText">Connections Stats</div>
         <div className={`bannerMenu ${hovering ? "active" : "inactive"}`}>
           <Link to="/settings" className="bannerMenuItem">
             User Settings

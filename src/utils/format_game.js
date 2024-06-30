@@ -5,7 +5,7 @@
  */
 
 const colorToChar = (input) => {
-  let sequence = input;
+  let sequence = input.map((str) => str.slice());
   const colorEmojis = ["🟨", "🟩", "🟦", "🟪"];
   const colorChars = ["y", "g", "b", "p"];
 
@@ -20,7 +20,7 @@ const colorToChar = (input) => {
 };
 
 const charToColor = (input) => {
-  let sequence = input;
+  let sequence = input.map((str) => str.slice());
   const colorEmojis = ["🟨", "🟩", "🟦", "🟪"];
   const colorChars = ["y", "g", "b", "p"];
 

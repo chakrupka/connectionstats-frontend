@@ -5,7 +5,7 @@
 
 const userGamesReducer = (state = [], action) => {
   switch (action.type) {
-    case "ADD_GAMES":
+    case "ADD_USER_GAMES":
       return [...state, ...action.payload];
     default:
       return state;
@@ -17,7 +17,7 @@ export const addUserGames = (games) => {
   const payload = Array.isArray(games) ? games : [games];
 
   return {
-    type: "ADD_GAMES",
+    type: "ADD_USER_GAMES",
     payload,
   };
 };

@@ -1,0 +1,216 @@
+/* .lbMessageBanner {
+  margin-top: 2dvh;
+  margin-bottom: -2dvh;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 52dvh;
+  text-align: center;
+  background: rgb(255, 240, 240);
+}
+
+.lbPopupScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100dvw;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lbPopup {
+  background: white;
+  height: fit-content;
+  width: 150px;
+  border-radius: 7px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0px 20px;
+  line-height: 105%;
+}
+
+.lbPopupCloseText {
+  padding-top: 10px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.lbMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.lbDate {
+  width: 304px;
+  font-size: 26px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lbPodiumContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+}
+
+.lbPodiumSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.lbPodiumName {
+  text-align: center;
+}
+
+.lbPodium {
+  flex-shrink: 0;
+  border: 1px solid black;
+  background: transparent;
+  text-align: center;
+  margin-top: 1px;
+}
+
+.lbPodium.first {
+  width: 115px;
+  height: 75px;
+  border-radius: 7px 7px 0px 0px;
+  margin-left: -1px;
+  margin-right: -1px;
+  font-size: 48px;
+  padding-top: 9px;
+}
+
+.lbPodium.second {
+  width: 114px;
+  height: 52px;
+  border-radius: 7px 0px 0px 0px;
+  font-size: 35px;
+  padding-top: 5px;
+}
+
+.lbPodium.third {
+  width: 114px;
+  height: 39px;
+  border-radius: 0px 7px 0px 0px;
+  font-size: 25px;
+  padding-top: 3px;
+}
+
+.lbTitle {
+  margin-top: 40px;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.lbSecTitles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 300px;
+  margin-bottom: 5px;
+}
+
+.lbSecTitle.rank {
+  margin-left: -5px;
+  margin-right: -10px;
+}
+
+.lbSecTitle.name {
+  margin-right: 80px;
+}
+
+.lbSecTitle.tries {
+  margin-left: -20px;
+  margin-right: -10px;
+}
+
+.lbSecTitle.game {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.lbLine {
+  height: 5px;
+  width: 300px;
+  border: 0;
+  border-top: 1px solid black;
+  padding: 0;
+}
+
+.lbList {
+  font-size: 20px;
+  width: 280px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+}
+
+.lbListCol {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.lbListCol.rank {
+  text-align: right;
+}
+.lbListCol.name {
+  text-align: left;
+  cursor: pointer;
+  min-width: 120px;
+}
+.lbListCol.score {
+  text-align: right;
+}
+.lbListCol.tries {
+  text-align: center;
+}
+.lbListCol.number {
+  text-align: left;
+}
+
+#resize-container {
+  width: 115px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+#resize-text {
+  display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+  .lbPopup {
+    line-height: 135%;
+  }
+}
+
+@media (min-width: 451px) {
+  .lbMain {
+    margin-top: -7dvh;
+  }
+
+  .lbDate {
+    margin-top: 4dvh;
+  }
+}
+
+@media (max-width: 450px) {
+  .lbDate {
+    margin-top: 3%;
+  }
+} */

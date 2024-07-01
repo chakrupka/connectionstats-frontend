@@ -74,6 +74,12 @@ a {
   opacity: 0;
 }
 
+.bannerMenuItem:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
 .bannerMenu.active .bannerMenuItem {
   transform: translateY(0);
   opacity: 1;
@@ -115,8 +121,6 @@ a {
   .bannerMenuItem {
     font-size: 1.5rem;
     text-decoration-line: none;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 1px;
     transition: transform 0.4s ease, opacity 0.4s ease-in-out;
   }
 }

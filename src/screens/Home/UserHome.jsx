@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const UserHome = () => {
   const user = useSelector((state) => state.user);
-  const stats = useSelector((state) => state.stats);
+  const stats = useSelector((state) => state.userStats);
 
   const StreakBanner = () => {
     console.log(stats.prevStreak);

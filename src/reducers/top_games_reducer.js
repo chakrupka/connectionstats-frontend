@@ -10,10 +10,10 @@ const topGamesReducer = (state = {}, action) => {
         ...state,
         topToday: action.payload,
       };
-    case "ADD_TOP_ALL_TIME":
+    case "ADD_TOP_YESTERDAY":
       return {
         ...state,
-        topAllTime: action.payload,
+        topYesterday: action.payload,
       };
     default:
       return state;
@@ -27,9 +27,9 @@ export const addTopTodayGames = (games) => {
   };
 };
 
-export const addTopAllTimeGames = (games) => {
+export const addTopYesterdayGames = (games) => {
   return {
-    type: "ADD_TOP_ALL_TIME",
+    type: "ADD_TOP_YESTERDAY",
     payload: games,
   };
 };

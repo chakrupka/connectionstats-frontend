@@ -1,40 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Stats.css";
-// import { ReactComponent as Green } from "./assets/green-corner.svg";
-// import { ReactComponent as Yellow } from "./assets/yellow-corner.svg";
-// import { ReactComponent as Blue } from "./assets/blue-corner.svg";
-// import { ReactComponent as Purple } from "./assets/purple-corner.svg";
 import dateUtils from "../../utils/date_utils.js";
 import { Link } from "react-router-dom";
 import NoStats from "./NoStats.jsx";
 import formatGame from "../../utils/format_game.js";
 import Banner from "../../components/Banner.jsx";
 
-/*
- * REVIEW OBSERVER CODE
- */
-
 const Stats = () => {
   const games = useSelector((state) => state.userGames);
-  const stats = useSelector((state) => state.stats);
+  const stats = useSelector((state) => state.userStats);
   const [tab, setTab] = useState("games");
 
-  // const EmojifyRow = ({ row }) => (
-  //   <div style={{ marginBottom: "-1.06dvh" }}>
-  //     {row.split("").map((char, index) => {
-  //       if (char === "y") {
-  //         return <Yellow className="emoji" key={index} />;
-  //       } else if (char === "g") {
-  //         return <Green className="emoji" key={index} />;
-  //       } else if (char === "b") {
-  //         return <Blue className="emoji" key={index} />;
-  //       } else {
-  //         return <Purple className="emoji" key={index} />;
-  //       }
-  //     })}
-  //   </div>
-  // );
   const scoreEmoji = (score) => {
     if (score === 30) return "💎";
     if (30 > score && score > 25) return "❤️‍🔥";
@@ -134,7 +111,6 @@ const Stats = () => {
       <Banner />
       <div className="statsMain">
         <div className="tabBar">
-          {" "}
           <div
             className={
               tab === "stats"

@@ -1,208 +1,419 @@
-.lbMessageBanner {
-  margin-top: 2dvh;
-  margin-bottom: -2dvh;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  width: 52dvh;
+.lb-title {
+  width: 100%;
   text-align: center;
-  background: rgb(255, 240, 240);
 }
 
-.lbPopupScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100dvh;
-  width: 100dvw;
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.lbPopup {
-  background: white;
-  height: fit-content;
-  width: 150px;
-  border-radius: 7px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 0px 20px;
-  line-height: 105%;
-}
-
-.lbPopupCloseText {
-  padding-top: 10px;
-  font-size: 12px;
-  text-align: center;
+.lb-help {
+  position: absolute;
   cursor: pointer;
 }
 
-.lbMain {
+.lb-page-select {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
 }
 
-.lbDate {
-  width: 304px;
-  font-size: 26px;
+#resize-container {
   text-align: center;
-  display: flex;
-  justify-content: space-between;
 }
 
-.lbPodiumContainer {
+#resize-text {
+  display: inline-block;
+}
+
+.podium {
   display: flex;
   flex-direction: row;
-  margin-top: 25px;
+  justify-content: center;
 }
 
-.lbPodiumSection {
+.podium-section {
   display: flex;
   flex-direction: column;
   justify-content: end;
 }
 
-.lbPodiumName {
+.podium-name {
   text-align: center;
+  min-height: 22px;
 }
 
-.lbPodium {
+.podium-rank-text {
   flex-shrink: 0;
-  border: 1px solid black;
   background: transparent;
   text-align: center;
-  margin-top: 1px;
 }
 
-.lbPodium.first {
-  width: 102px;
-  height: 75px;
-  border-radius: 7px 7px 0px 0px;
-  margin-left: -1px;
-  margin-right: -1px;
-  font-size: 43px;
-  padding-top: 9px;
-}
-
-.lbPodium.second {
-  width: 101px;
-  height: 52px;
-  border-radius: 7px 0px 0px 0px;
-  flex-shrink: 0;
-  font-size: 32px;
-  padding-top: 4px;
-}
-
-.lbPodium.third {
-  width: 101px;
-  height: 39px;
-  border-radius: 0px 7px 0px 0px;
-  flex-shrink: 0;
-  font-size: 24px;
-  padding-top: 3px;
-}
-
-.lbTitle {
-  margin-top: 40px;
-  font-size: 26px;
+.ranked-list-table-col.rank {
   text-align: center;
-  margin-bottom: 10px;
 }
-
-.lbSecTitles {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 300px;
-  margin-bottom: 5px;
-}
-
-.lbSecTitle.rank {
-  margin-left: -5px;
-  margin-right: -10px;
-}
-
-.lbSecTitle.name {
-  margin-right: 80px;
-}
-
-.lbSecTitle.tries {
-  margin-left: -20px;
-  margin-right: -10px;
-}
-
-.lbSecTitle.game {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-.lbLine {
-  height: 5px;
-  width: 300px;
-  border: 0;
-  border-top: 1px solid black;
-  padding: 0;
-}
-
-.lbList {
-  font-size: 20px;
-  width: 280px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 30px;
-}
-
-.lbListCol {
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
-}
-
-.lbListCol.rank {
-  text-align: right;
-}
-.lbListCol.name {
+.ranked-list-table-col.name {
   text-align: left;
+}
+.ranked-list-table-col.score {
+  text-align: center;
+}
+
+.help-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  opacity: 0.5;
   cursor: pointer;
-  min-width: 120px;
-}
-.lbListCol.score {
-  text-align: right;
-}
-.lbListCol.tries {
-  text-align: center;
-}
-.lbListCol.number {
-  text-align: left;
 }
 
-@media screen and (max-width: 800px) {
-  .lbPopup {
-    line-height: 135%;
+@media (max-width: 450px) {
+  .help-popup-context {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 65%;
+    height: fit-content;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+    font-size: 1rem;
+    padding: 0px 7.5% 10px;
+  }
+
+  .help-popup-title {
+    font-size: 1.5rem;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+  }
+
+  .lb-line-wrapper {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lb-line {
+    width: 320px;
+    margin-top: 45px;
+    margin-bottom: -25px;
+    border-bottom: 1px solid grey;
+  }
+
+  .lb-help {
+    top: 70px;
+    right: 20px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .pick-category {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+  }
+
+  .pick-category-text {
+    font-size: 1.1rem;
+  }
+
+  .pick-category-menu select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    color: black;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-align-last: center;
+    text-decoration-line: underline;
+    text-underline-offset: 2px;
+  }
+
+  .no-games {
+    width: 80%;
+    margin-left: 10%;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .ranked-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  .ranked-list-table {
+    font-size: 1.6rem;
+  }
+
+  .ranked-list-table-header {
+    text-align: left;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 30px;
+  }
+
+  .ranked-list-table-header.rank {
+    padding-right: 8px;
+  }
+
+  .ranked-list-table-header.username {
+    font-weight: normal;
+    padding-left: 10px;
+  }
+
+  .ranked-list-table-row {
+    line-height: 30px;
+  }
+
+  .ranked-list-table-col.name {
+    padding: 0px 20px 0px 15px;
+    min-width: 150px;
+  }
+
+  .lb-title {
+    margin-top: 40px;
+    font-size: 2.5rem;
+  }
+
+  .lb-page-select {
+    font-size: 1.5em;
+  }
+
+  .podium {
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .podium-name {
+    min-height: 22px;
+  }
+
+  .podium-rank-text {
+    border: 1px solid black;
+    margin-top: 0px;
+  }
+
+  .podium-rank-text.first {
+    width: 115px;
+    height: 75px;
+    border-radius: 7px 7px 0px 0px;
+    margin-left: -1px;
+    margin-right: -1px;
+    font-size: 48px;
+    padding-top: 9px;
+  }
+
+  .podium-rank-text.second {
+    width: 114px;
+    height: 52px;
+    border-radius: 7px 0px 0px 0px;
+    font-size: 35px;
+    padding-top: 5px;
+  }
+
+  .podium-rank-text.third {
+    width: 114px;
+    height: 39px;
+    border-radius: 0px 7px 0px 0px;
+    font-size: 25px;
+    padding-top: 3px;
+  }
+
+  #resize-container {
+    width: 115px;
+    margin-bottom: 2px;
   }
 }
 
 @media (min-width: 451px) {
-  .lbMain {
-    margin-top: -7dvh;
+  .banner-replacement {
+    height: 7rem;
   }
 
-  .lbDate {
-    margin-top: 4dvh;
+  .help-popup-context {
+    position: absolute;
+    top: 15%;
+    left: 33%;
+    width: 28%;
+    height: fit-content;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+    font-size: 1.5rem;
+    padding: 0px 3% 10px;
   }
-}
 
-@media (max-width: 450px) {
-  .lbDate {
-    margin-top: 3%;
+  .help-popup-title {
+    font-size: 2.5rem;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+  }
+
+  .lb-line-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lb-line {
+    position: absolute;
+    width: 420px;
+    margin-top: 59px;
+    margin-bottom: -10px;
+    border-bottom: 2px solid grey;
+  }
+
+  .lb-help {
+    top: 80px;
+    right: 20px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .pick-category {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -10px;
+  }
+
+  .pick-category-text {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+
+  .pick-category-menu select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    color: black;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 1.5rem;
+    text-align-last: center;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2.5px;
+    text-underline-offset: 2px;
+  }
+
+  .pick-category-menu select:focus {
+    outline: none;
+  }
+
+  .no-games {
+    width: 80%;
+    margin-left: 10%;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .ranked-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .ranked-list-table {
+    font-size: 2rem;
+  }
+
+  .ranked-list-table-header {
+    text-align: left;
+    font-weight: normal;
+    font-size: 1.1rem;
+    line-height: 40px;
+  }
+
+  .ranked-list-table-header.rank {
+    padding-right: 10px;
+  }
+
+  .ranked-list-table-header.username {
+    font-weight: normal;
+    padding-left: 10px;
+  }
+
+  .ranked-list-table-row {
+    line-height: 35px;
+  }
+
+  .ranked-list-table-col.name {
+    padding: 0px 40px 0px 15px;
+    min-width: 150px;
+  }
+
+  .lb-title {
+    margin-top: -90px;
+    font-size: 3.5rem;
+  }
+
+  .lb-page-select {
+    font-size: 2em;
+  }
+
+  .podium {
+    margin-top: 50px;
+    width: 100%;
+  }
+
+  .podium-name {
+    min-height: 22px;
+  }
+
+  .podium-rank-text {
+    border: 2px solid black;
+    margin-top: 0px;
+  }
+
+  .podium-rank-text.first {
+    width: 130px;
+    height: 100px;
+    border-radius: 7px 7px 0px 0px;
+    margin-left: -2px;
+    margin-right: -2px;
+    font-size: 70px;
+    padding-top: 15px;
+  }
+
+  .podium-rank-text.second {
+    width: 130px;
+    height: 70px;
+    border-radius: 7px 0px 0px 0px;
+    font-size: 50px;
+    padding-top: 10px;
+  }
+
+  .podium-rank-text.third {
+    width: 130px;
+    height: 50px;
+    border-radius: 0px 7px 0px 0px;
+    font-size: 35px;
+    padding-top: 10px;
+  }
+
+  #resize-container {
+    width: 130px;
+    margin-bottom: 5px;
   }
 }

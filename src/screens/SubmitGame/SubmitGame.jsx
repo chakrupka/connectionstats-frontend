@@ -4,7 +4,11 @@ import "./SubmitGame.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUserStats } from "../../utils/redux_loaders.js";
+import {
+  loadAllData,
+  loadUserGames,
+  loadUserStats,
+} from "../../utils/redux_loaders.js";
 import Banner from "../../components/Banner.jsx";
 
 const SubmitGame = () => {
@@ -12,6 +16,7 @@ const SubmitGame = () => {
   const [results, setResults] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const topGames = useSelector((state) => state.topGames);
 
   const placeholder = `Instructions:
   1. Open NYTimes Games
@@ -38,7 +43,12 @@ const SubmitGame = () => {
     if (res) {
       console.log("Game sent succesfully", res);
       setResults(res);
-      await loadUserStats(user.token, dispatch);
+      if (!topGames.topToday) {
+        await loadUserGames(user.token, dispatch);
+        await loadUserStats(user.token, dispatch);
+      } else {
+        await loadAllData(user.token, dispatch);
+      }
     } else {
       console.log("Failed to send game");
     }

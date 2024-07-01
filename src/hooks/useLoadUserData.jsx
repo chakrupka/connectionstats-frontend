@@ -7,8 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../reducers/user_reducer";
 import { useLocation, useNavigate } from "react-router-dom";
-import { loadUserGames } from "../utils/redux_loaders.js";
-import { loadUserStats } from "../utils/redux_loaders.js";
+import { loadUserGames, loadUserStats } from "../utils/redux_loaders";
 
 const useLoadUserData = () => {
   const dispatch = useDispatch();

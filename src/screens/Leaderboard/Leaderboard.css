@@ -69,19 +69,19 @@
 @media (max-width: 450px) {
   .help-popup-context {
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 10%;
     width: 65%;
     height: fit-content;
     background: white;
     border-radius: 10px;
     z-index: 1;
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 0px 7.5% 10px;
   }
 
   .help-popup-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 20px;
     text-align: center;
     margin-bottom: 15px;
@@ -243,14 +243,15 @@
 
   .help-popup-context {
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 33%;
     width: 28%;
+    max-height: 80%;
     height: fit-content;
     background: white;
     border-radius: 10px;
     z-index: 1;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 0px 3% 10px;
   }
 

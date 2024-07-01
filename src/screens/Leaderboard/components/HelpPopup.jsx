@@ -40,6 +40,8 @@ const HelpPopup = ({ setHelpPopup }) => {
             this article.
           </a>
         </div>
+        <div className="help-popup-title">Notes</div>
+        <div>Solve Rate and Average Score require at least 10 games.</div>
         <div style={{ textAlign: "center", marginTop: "40px" }}>
           Click anywhere to exit
         </div>

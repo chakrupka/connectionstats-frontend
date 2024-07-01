@@ -1,7 +1,7 @@
 import Banner from "../../components/Banner.jsx";
 import PageSelect from "./components/PageSelect.jsx";
 import Today from "./components/Today.jsx";
-import { ReactComponent as HelpIcon } from "../../../public/assets/helpicon.svg";
+import { ReactComponent as HelpIcon } from "../../assets/helpicon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import "./Leaderboard.css";

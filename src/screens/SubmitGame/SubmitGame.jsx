@@ -40,8 +40,8 @@ const SubmitGame = () => {
 
   const handleSendGame = async (game) => {
     const res = await sendGame(game, user.token);
-    if (res) {
-      console.log("Game sent succesfully", res);
+    if (!res.response) {
+      console.log("Game sent succesfully");
       setResults(res);
       if (!topGames.topToday) {
         await loadUserGames(user.token, dispatch);
@@ -50,6 +50,9 @@ const SubmitGame = () => {
         await loadAllData(user.token, dispatch);
       }
     } else {
+      if (res.response.status === 409) {
+        alert("You've already submitted a game for this day");
+      }
       console.log("Failed to send game");
     }
   };

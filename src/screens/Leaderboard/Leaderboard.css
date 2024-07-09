@@ -136,6 +136,10 @@
     text-underline-offset: 2px;
   }
 
+  .pick-category-menu select:focus {
+    outline: none;
+  }
+
   .no-games {
     width: 80%;
     margin-left: 10%;

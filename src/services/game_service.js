@@ -16,7 +16,7 @@ export const sendGame = async (game, token) => {
     return res.data;
   } catch (err) {
     console.log(err);
-    return null;
+    return err;
   }
 };
 

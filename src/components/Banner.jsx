@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ReactComponent as MenuLines } from "../assets/menu_lines.svg";
 
 const Banner = () => {
   const [hovering, setHovering] = useState(false);
@@ -31,6 +32,7 @@ const Banner = () => {
         onMouseOver={handleHover}
         onMouseOut={handleLeave}
       >
+        <MenuLines className="menu-lines" />
         <div className="bannerText">Connections Stats</div>
         <div className={`bannerMenu ${hovering ? "active" : "inactive"}`}>
           <Link to="/settings" className="bannerMenuItem">
@@ -51,7 +53,7 @@ const Banner = () => {
         </div>
       </div>
       <div className={`overlay ${hovering ? "active" : ""}`}></div>
-      <div style={{ marginBottom: "10dvw" }}>&nbsp;</div>
+      <div className="banner-space">&nbsp;</div>
     </>
   );
 };

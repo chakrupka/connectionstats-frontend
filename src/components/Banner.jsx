@@ -32,7 +32,9 @@ const Banner = () => {
         onMouseOver={handleHover}
         onMouseOut={handleLeave}
       >
-        <MenuLines className="menu-lines" />
+        <div className="menu-lines" onClick={() => setHovering(!hovering)}>
+          <MenuLines className="menu-lines" />
+        </div>
         <div className="bannerText">Connections Stats</div>
         <div className={`bannerMenu ${hovering ? "active" : "inactive"}`}>
           <Link to="/settings" className="bannerMenuItem">
